@@ -14,7 +14,7 @@ function MapNode({ city, spec, size, market, x, y, }) {
             class: "bi-circle-fill text-" + specCode + " " + sizeCode,
             'data-bs-toggle': "popover",
             'data-bs-title': city,
-            'data-bs-custom-class': specCode + "-popover text-center",
+            'data-bs-custom-class': specCode + "-popover text-center fs-3",
             'data-bs-placement': "top",
             'data-bs-content': spec + "<br/>" + market + " Regional Market",
             'data-bs-html': "true",

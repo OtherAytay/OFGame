@@ -1,9 +1,9 @@
 :root {
     /* Specializations */
-    --spec1: #0d6efd;
-    --spec2: #dc3545;
-    --spec3: #d63384;
-    --spec4: #000000;
+    --oral: #0d6efd;
+    --anal: #dc3545;
+    --sissy: #d63384;
+    --bondage: #000000;
 
     /* Regional Markets */
     --anglo: #a4c2f4;
@@ -176,46 +176,46 @@
 }
 
 
-.spec1-popover {
+.oral-popover {
     --bs-popover-max-width: 600px;
     --bs-popover-font-size: 18pt;
     --bs-popover-header-font-size: 24pt;
     --bs-popover-header-color: var(--bs-white);
-    --bs-popover-border-color: var(--spec1);
-    --bs-popover-header-bg: var(--spec1);
+    --bs-popover-border-color: var(--oral);
+    --bs-popover-header-bg: var(--oral);
     --bs-popover-body-padding-x: 1rem;
     --bs-popover-body-padding-y: .5rem;
 }
 
-.spec2-popover {
+.anal-popover {
     --bs-popover-max-width: 600px;
     --bs-popover-font-size: 18pt;
     --bs-popover-header-font-size: 24pt;
     --bs-popover-header-color: var(--bs-white);
-    --bs-popover-border-color: var(--spec2);
-    --bs-popover-header-bg: var(--spec2);
+    --bs-popover-border-color: var(--anal);
+    --bs-popover-header-bg: var(--anal);
     --bs-popover-body-padding-x: 1rem;
     --bs-popover-body-padding-y: .5rem;
 }
 
-.spec3-popover {
+.sissy-popover {
     --bs-popover-max-width: 600px;
     --bs-popover-font-size: 18pt;
     --bs-popover-header-font-size: 24pt;
     --bs-popover-header-color: var(--bs-white);
-    --bs-popover-border-color: var(--spec3);
-    --bs-popover-header-bg: var(--spec3);
+    --bs-popover-border-color: var(--sissy);
+    --bs-popover-header-bg: var(--sissy);
     --bs-popover-body-padding-x: 1rem;
     --bs-popover-body-padding-y: .5rem;
 }
 
-.spec4-popover {
+.bondage-popover {
     --bs-popover-max-width: 600px;
     --bs-popover-font-size: 18pt;
     --bs-popover-header-font-size: 24pt;
     --bs-popover-header-color: var(--bs-white);
-    --bs-popover-border-color: var(--spec4);
-    --bs-popover-header-bg: var(--spec4);
+    --bs-popover-border-color: var(--bondage);
+    --bs-popover-header-bg: var(--bondage);
     --bs-popover-body-padding-x: 1rem;
     --bs-popover-body-padding-y: .5rem;
 }

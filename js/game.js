@@ -310,89 +310,90 @@ function generateCities() {
     /*--- Anglo Regional Market ---*/
     // United Kingdom
     createCity("London", "Big", "Oral / Sissy", "Anglo", 21, 53);
-    createCity("Bristol", "Small", "", "Anglo");
-    createCity("Manchester", "Small", "", "Anglo");
-    createCity("Edinburgh", "Small", "", "Anglo");
+    createCity("Bristol", "Small", "Sissy", "Anglo", 18, 57);
+    createCity("Manchester", "Small", "Oral", "Anglo", 17, 39);
+    createCity("Edinburgh", "Small", "Sissy", "Anglo", 13.5, 25.5);
     
     // Ireland
-    createCity("Dublin", "Medium", "", "Anglo");
-    createCity("Cork", "Small", "", "Anglo");
+    createCity("Dublin", "Medium", "Bondage", "Anglo", 6.75, 45);
+    createCity("Cork", "Small", "Anal", "Anglo", 3.75, 49);
 
     /*--- Iberian Regional Market ---*/
     // Spain
     createCity("Madrid", "Big", "Anal / Sissy", "Iberian", 12.75, 117.5);
-    createCity("Barcelona", "Medium", "", "Iberian");
-    createCity("Santiago de Compostela", "Small", "", "Iberian");
-    createCity("Seville", "Small", "", "Iberian");
-    createCity("Malaga", "Small", "", "Iberian");
-    createCity("Valencia", "Small", "", "Iberian");
+    createCity("Barcelona", "Medium", "Oral", "Iberian", 27, 112);
+    createCity("Santiago de Compostela", "Small", "Oral", "Iberian", 2.25, 107.5);
+    createCity("Seville", "Small", "Sissy", "Iberian", 7.5, 131);
+    createCity("Malaga", "Small", "Bondage", "Iberian", 10.5, 137);
+    createCity("Valencia", "Small", "Anal", "Iberian", 20.75, 124);
     
-    createCity("Lisbon", "Medium", "", "Iberian"); // Portugal
+    createCity("Lisbon", "Medium", "Anal", "Iberian", 1.75, 126); // Portugal
 
     /*--- French Regional Market ---*/
     // France
     createCity("Paris", "Big", "Oral / Anal", "French", 28.8, 77);
-    createCity("Rennes", "Small", "", "French");
-    createCity("Bordeaux", "Small", "", "French");
-    createCity("Lyon", "Small", "", "French");
-    createCity("Montpellier", "Small", "", "French");
+    createCity("Rennes", "Small", "Anal", "French", 19.75, 74.5);
+    createCity("Bordeaux", "Small", "Sissy", "French", 19.5, 95);
+    createCity("Lyon", "Small", "Bondage", "French", 32, 89);
+    createCity("Montpellier", "Small", "Oral", "French", 30.75, 102);
 
-    createCity("Brussels", "Small", ""); // Belgium
+    createCity("Brussels", "Small", "Oral", "French", 32.5, 61); // Belgium
 
     /*--- Germanic Regional Market ---*/
     // Germany
     createCity("Berlin", "Big", "Anal / Bondage", "Germanic", 48.75, 58.5);
-    createCity("Frankfurt", "Small", "", "Germanic");
-    createCity("Stuttgart", "Small", "", "Germanic");
+    createCity("Frankfurt", "Small", "Sissy", "Germanic", 40.75, 60.5);
+    createCity("Stuttgart", "Small", "Oral", "Germanic", 43.25, 69.5);
     
-    createCity("Amsterdam", "Medium", "", "Germanic"); // Netherlands
-    createCity("Zurich", "Small", "", "Germanic"); // Switzerland 
-    createCity("Linz", "Medium", "", "Germanic"); // Austria
+    createCity("Amsterdam", "Medium", "Bondage", "Germanic", 35.5, 50); // Netherlands
+    createCity("Zurich", "Small", "Anal", "Germanic", 40.75, 84.5); // Switzerland 
+    createCity("Linz", "Medium", "Anal", "Germanic", 54, 77.5); // Austria
 
     /*--- Greco-Roman Regional Market ---*/
     // Italy & Italian Islands
     createCity("Rome", "Big", "Oral / Bondage", "Greco-Roman", 47.5, 104);
-    createCity("Milan", "Small", "", "Greco-Roman");
-    createCity("Naples", "Small", "", "Greco-Roman");
-    createCity("Cagliari", "Small", "", "Greco-Roman"); // Sardinia
-    createCity("Palermo", "Small", "", "Greco-Roman"); // Sicily
+    createCity("Milan", "Small", "Sissy", "Greco-Roman", 44, 92);
+    createCity("Naples", "Small", "Bondage", "Greco-Roman", 53.5, 115);
+    createCity("Cagliari", "Small", "Oral", "Greco-Roman", 42.25, 121.75); // Sardinia
+    createCity("Palermo", "Small", "Anal", "Greco-Roman", 53.5, 133); // Sicily
 
     // Greece
-    createCity("Athens", "Medium", "", "Greco-Roman");
-    createCity("Thessaloniki", "Small", "", "Greco-Roman");
+    createCity("Athens", "Medium", "Sissy", "Greco-Roman", 72.5, 132);
+    createCity("Thessaloniki", "Small", "Bondage", "Greco-Roman", 73.75 , 117.5);
+    createCity("Heraklion", "Small", "Oral", "Greco-Roman", 77.75, 144);
 
     /*--- Northern European Regional Market ---*/
-    createCity("Vejle", "Small", "", "Northern"); // Denmark
-    createCity("Gothenburg", "Medium", "", "Northern"); // Sweden
-    createCity("Oslo", "Small", "", "Northern"); // Norway
-    createCity("Tallinn", "Small", "", "Northern"); // Estonia
-    createCity("Riga", "Medium", "", "Northern"); // Latvia
-    createCity("Kaunas", "Small", "", "Northern"); // Lithuania
+    createCity("Vejle", "Small", "Anal", "Northern", 42.75, 27.5); // Denmark
+    createCity("Gothenburg", "Medium", "Anal", "Northern", 51.25, 16); // Sweden
+    createCity("Oslo", "Small", "Bondage", "Northern", 41.75, 3.75); // Norway
+    createCity("Tallinn", "Small", "Sissy", "Northern", 78.25, 3); // Estonia
+    createCity("Riga", "Medium", "Anal", "Northern", 77.5, 16); // Latvia
+    createCity("Kaunas", "Small", "Bondage", "Northern", 74, 33); // Lithuania
 
     /*--- Eastern European Regional Market ---*/
     // Poland
-    createCity("Warsaw", "Medium", "", "Eastern");
-    createCity("Koszalin", "Small", "", "Eastern");
+    createCity("Warsaw", "Medium", "Oral", "Eastern", 65.75, 51);
+    createCity("Koszalin", "Small", "Oral", "Eastern", 59.75, 37);
 
     createCity("Budapest", "Big", "Sissy / Bondage", "Eastern", 67, 83); // Hungary
-    createCity("Prague", "Small", "", "Eastern"); // Czechia
+    createCity("Prague", "Small", "Anal", "Eastern", 56.25, 67.25); // Czechia
 
-    createCity("Rijeka", "Medium", "", "Eastern"); // Croatia
-    createCity("Sarajevo", "Small", "", "Eastern"); // Bosnia and Herzegovina
-    createCity("Kragujevac", "Small", "", "Eastern"); // Serbia
-    createCity("Sliven", "Small", "", "Eastern"); // Bulgaria
-    createCity("Brasov", "Medium", "", "Eastern"); // Romania
-    createCity("Chisinau", "Small", "", "Eastern"); // Moldova
-    createCity("Minsk", "Small", "", "Eastern"); // Belarus
+    createCity("Rijeka", "Medium", "Oral", "Eastern", 56.75, 95); // Croatia
+    createCity("Sarajevo", "Small", "Anal", "Eastern", 62.25, 99); // Bosnia and Herzegovina
+    createCity("Kragujevac", "Small", "Oral", "Eastern", 70, 101); // Serbia
+    createCity("Sliven", "Small", "Anal", "Eastern", 82.5, 107); // Bulgaria
+    createCity("Brasov", "Medium", "Bondage", "Eastern", 79, 89); // Romania
+    createCity("Chisinau", "Small", "Oral", "Eastern", 85.75, 84.5); // Moldova
+    createCity("Minsk", "Small", "Anal", "Eastern", 83.75, 41.5); // Belarus
     
     // Ukraine
-    createCity("Kyiv", "Medium", "", "Eastern");
-    createCity("Ternopil", "Small", "", "Eastern");
+    createCity("Kyiv", "Medium", "Oral", "Eastern", 88.75, 63);
+    createCity("Ternopil", "Small", "Sissy", "Eastern", 78.25, 70.25);
 
     // Turkey
-    createCity("Istanbul", "Medium", "", "Eastern");
-    createCity("Izmir", "Small", "", "Eastern");
-    createCity("Kayseri", "Small", "", "Eastern");
+    createCity("Istanbul", "Medium", "Bondage", "Eastern", 85, 114);
+    createCity("Izmir", "Small", "Anal", "Eastern", 83.75, 130.5);
+    createCity("Kayseri", "Small", "Sissy", "Eastern", 98, 125);
 }
 
 function generateConnections() {
