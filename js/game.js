@@ -364,7 +364,7 @@ function generateCities() {
 
     /*--- Northern European Regional Market ---*/
     createCity("Vejle", "Small", "Anal", "Northern", 42.75, 27.5); // Denmark
-    createCity("Gothenburg", "Medium", "Anal", "Northern", 51.25, 16); // Sweden
+    createCity("Gothenburg", "Medium", "Oral", "Northern", 51.25, 16); // Sweden
     createCity("Oslo", "Small", "Bondage", "Northern", 41.75, 3.75); // Norway
     createCity("Tallinn", "Small", "Sissy", "Northern", 78.25, 3); // Estonia
     createCity("Riga", "Medium", "Anal", "Northern", 77.5, 16); // Latvia
@@ -376,7 +376,7 @@ function generateCities() {
     createCity("Koszalin", "Small", "Oral", "Eastern", 59.75, 37);
 
     createCity("Budapest", "Big", "Sissy / Bondage", "Eastern", 67, 83); // Hungary
-    createCity("Prague", "Small", "Anal", "Eastern", 56.25, 67.25); // Czechia
+    createCity("Prague", "Small", "Bondage", "Eastern", 56.25, 67.25); // Czechia
 
     createCity("Rijeka", "Medium", "Oral", "Eastern", 56.75, 95); // Croatia
     createCity("Sarajevo", "Small", "Anal", "Eastern", 62.25, 99); // Bosnia and Herzegovina

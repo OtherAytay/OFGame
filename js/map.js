@@ -33,7 +33,7 @@ function populateMap() {
             size: properties.size,
             market: properties.market,
             x: properties.x + "%",
-            y: properties.y + "%"
+            y: properties.y * 0.665  + "%"
         }, null))
     }
     mapNodes.push(React.createElement(
