@@ -399,340 +399,340 @@ function generateCities() {
 function generateConnections() {
     /*--- Anglo Regional Market ---*/
     // United Kingdom
-    createConnection("London", "Dublin", premiumTravel);
-    createConnection("London", "Paris", premiumTravel + marketTax);
-    createConnection("London", "Bristol", standardTravel);
+    createConnection("London", "Dublin", "Premium", premiumTravel);
+    createConnection("London", "Paris", "Premium", premiumTravel + marketTax);
+    createConnection("London", "Bristol", "Standard", standardTravel);
     
-    createConnection("Bristol", "London", standardTravel);
-    createConnection("Bristol", "Manchester", standardTravel);
-    createConnection("Bristol", "Cork", standardTravel);
-    createConnection("Bristol", "Rennes", standardTravel + marketTax);
-    createConnection("Bristol", "Santiago de Compostela", standardTravel + marketTax);
-    createConnection("Bristol", "Lisbon", standardTravel + marketTax);
+    createConnection("Bristol", "London", "Standard", standardTravel);
+    createConnection("Bristol", "Manchester", "Standard", standardTravel);
+    createConnection("Bristol", "Cork", "Standard", standardTravel);
+    createConnection("Bristol", "Rennes", "Standard", standardTravel + marketTax);
+    createConnection("Bristol", "Santiago de Compostela", "Standard", standardTravel + marketTax);
+    createConnection("Bristol", "Lisbon", "Standard", standardTravel + marketTax);
 
-    createConnection("Manchester", "Bristol", standardTravel);
-    createConnection("Manchester", "Dublin", standardTravel);
-    createConnection("Manchester", "Edinburgh", standardTravel);
+    createConnection("Manchester", "Bristol", "Standard", standardTravel);
+    createConnection("Manchester", "Dublin", "Standard", standardTravel);
+    createConnection("Manchester", "Edinburgh", "Standard", standardTravel);
 
-    createConnection("Edinburgh", "Manchester", standardTravel);
-    createConnection("Edinburgh", "Dublin", standardTravel);
+    createConnection("Edinburgh", "Manchester", "Standard", standardTravel);
+    createConnection("Edinburgh", "Dublin", "Standard", standardTravel);
     
     // Ireland
-    createConnection("Dublin", "Cork", standardTravel);
-    createConnection("Dublin", "Edinburgh", standardTravel);
-    createConnection("Dublin", "Manchester", standardTravel);
-    createConnection("Dublin", "London", premiumTravel);
+    createConnection("Dublin", "Cork", "Standard", standardTravel);
+    createConnection("Dublin", "Edinburgh", "Standard", standardTravel);
+    createConnection("Dublin", "Manchester", "Standard", standardTravel);
+    createConnection("Dublin", "London", "Premium", premiumTravel);
 
-    createConnection("Cork", "Dublin", standardTravel);
-    createConnection("Cork", "Bristol", standardTravel);
-    createConnection("Cork", "Santiago de Compostela", standardTravel + marketTax);
-    createConnection("Cork", "Rennes", standardTravel + marketTax);
+    createConnection("Cork", "Dublin", "Standard", standardTravel);
+    createConnection("Cork", "Bristol", "Standard", standardTravel);
+    createConnection("Cork", "Santiago de Compostela", "Standard", standardTravel + marketTax);
+    createConnection("Cork", "Rennes", "Standard", standardTravel + marketTax);
 
     /*--- Iberian Regional Market ---*/
     // Spain
-    createConnection("Madrid", "Lisbon", premiumTravel);
-    createConnection("Madrid", "Paris", premiumTravel + marketTax);
-    createConnection("Madrid","Barcelona", standardTravel);
-    createConnection("Madrid", "Santiago de Compostela", standardTravel);
-    createConnection("Madrid", "Seville", standardTravel);
-    createConnection("Madrid", "Malaga", standardTravel);
-    createConnection("Madrid", "Valencia", standardTravel);
+    createConnection("Madrid", "Lisbon", "Premium", premiumTravel);
+    createConnection("Madrid", "Paris", "Premium", premiumTravel + marketTax);
+    createConnection("Madrid","Barcelona", "Standard", standardTravel);
+    createConnection("Madrid", "Santiago de Compostela", "Standard", standardTravel);
+    createConnection("Madrid", "Seville", "Standard", standardTravel);
+    createConnection("Madrid", "Malaga", "Standard", standardTravel);
+    createConnection("Madrid", "Valencia", "Standard", standardTravel);
 
-    createConnection("Barcelona", "Madrid", standardTravel);
-    createConnection("Barcelona", "Valencia", standardTravel);
-    createConnection("Barcelona", "Bordeaux", standardTravel + marketTax);
-    createConnection("Barcelona", "Montpellier", standardTravel + marketTax);
+    createConnection("Barcelona", "Madrid", "Standard", standardTravel);
+    createConnection("Barcelona", "Valencia", "Standard", standardTravel);
+    createConnection("Barcelona", "Bordeaux", "Standard", standardTravel + marketTax);
+    createConnection("Barcelona", "Montpellier", "Standard", standardTravel + marketTax);
 
-    createConnection("Santiago de Compostela", "Madrid", standardTravel);
-    createConnection("Santiago de Compostela", "Lisbon", standardTravel);
-    createConnection("Santiago de Compostela", "Cork", standardTravel + marketTax);
-    createConnection("Santiago de Compostela", "Bristol", standardTravel + marketTax);
+    createConnection("Santiago de Compostela", "Madrid", "Standard", standardTravel);
+    createConnection("Santiago de Compostela", "Lisbon", "Standard", standardTravel);
+    createConnection("Santiago de Compostela", "Cork", "Standard", standardTravel + marketTax);
+    createConnection("Santiago de Compostela", "Bristol", "Standard", standardTravel + marketTax);
 
-    createConnection("Seville", "Madrid", standardTravel);
-    createConnection("Seville", "Lisbon", standardTravel);
-    createConnection("Seville", "Malaga", standardTravel);
+    createConnection("Seville", "Madrid", "Standard", standardTravel);
+    createConnection("Seville", "Lisbon", "Standard", standardTravel);
+    createConnection("Seville", "Malaga", "Standard", standardTravel);
 
-    createConnection("Malaga", "Madrid", standardTravel);
-    createConnection("Malaga", "Seville", standardTravel);
-    createConnection("Malaga", "Valencia", standardTravel);
-    createConnection("Malaga", "Cagliari", standardTravel + marketTax);
-    createConnection("Malaga", "Palermo", standardTravel + marketTax);
+    createConnection("Malaga", "Madrid", "Standard", standardTravel);
+    createConnection("Malaga", "Seville", "Standard", standardTravel);
+    createConnection("Malaga", "Valencia", "Standard", standardTravel);
+    createConnection("Malaga", "Cagliari", "Standard", standardTravel + marketTax);
+    createConnection("Malaga", "Palermo", "Standard", standardTravel + marketTax);
 
-    createConnection("Valencia", "Madrid", standardTravel);
-    createConnection("Valencia", "Barcelona", standardTravel);
-    createConnection("Valencia", "Malaga", standardTravel);
-    createConnection("Valencia", "Cagliari", standardTravel + marketTax);
-    createConnection("Valencia", "Palermo", standardTravel + marketTax);
+    createConnection("Valencia", "Madrid", "Standard", standardTravel);
+    createConnection("Valencia", "Barcelona", "Standard", standardTravel);
+    createConnection("Valencia", "Malaga", "Standard", standardTravel);
+    createConnection("Valencia", "Cagliari", "Standard", standardTravel + marketTax);
+    createConnection("Valencia", "Palermo", "Standard", standardTravel + marketTax);
 
     // Portugal
-    createConnection("Lisbon", "Madrid", premiumTravel);
-    createConnection("Lisbon", "Santiago de Compostela", standardTravel);
-    createConnection("Lisbon", "Seville", standardTravel);
-    createConnection("Lisbon", "Cork", standardTravel + marketTax);
-    createConnection("Lisbon", "Bristol", standardTravel + marketTax);
+    createConnection("Lisbon", "Madrid", "Premium", premiumTravel);
+    createConnection("Lisbon", "Santiago de Compostela", "Standard", standardTravel);
+    createConnection("Lisbon", "Seville", "Standard", standardTravel);
+    createConnection("Lisbon", "Cork", "Standard", standardTravel + marketTax);
+    createConnection("Lisbon", "Bristol", "Standard", standardTravel + marketTax);
 
     /*--- French Regional Market ---*/
     // France
-    createConnection("Paris", "London", premiumTravel + marketTax);
-    createConnection("Paris", "Madrid", premiumTravel + marketTax);
-    createConnection("Paris", "Berlin", premiumTravel + marketTax);
-    createConnection("Paris", "Rome", premiumTravel + marketTax);
-    createConnection("Paris", "Rennes", standardTravel);
-    createConnection("Paris", "Bordeaux", standardTravel);
-    createConnection("Paris", "Brussels", standardTravel);
-    createConnection("Paris", "Lyon", standardTravel);
+    createConnection("Paris", "London", "Premium", premiumTravel + marketTax);
+    createConnection("Paris", "Madrid", "Premium", premiumTravel + marketTax);
+    createConnection("Paris", "Berlin", "Premium", premiumTravel + marketTax);
+    createConnection("Paris", "Rome", "Premium", premiumTravel + marketTax);
+    createConnection("Paris", "Rennes", "Standard", standardTravel);
+    createConnection("Paris", "Bordeaux", "Standard", standardTravel);
+    createConnection("Paris", "Brussels", "Standard", standardTravel);
+    createConnection("Paris", "Lyon", "Standard", standardTravel);
 
-    createConnection("Rennes", "Paris", standardTravel);
-    createConnection("Rennes", "Bordeaux", standardTravel);
-    createConnection("Rennes", "Bristol", standardTravel + marketTax);
-    createConnection("Rennes", "Cork", standardTravel + marketTax);
+    createConnection("Rennes", "Paris", "Standard", standardTravel);
+    createConnection("Rennes", "Bordeaux", "Standard", standardTravel);
+    createConnection("Rennes", "Bristol", "Standard", standardTravel + marketTax);
+    createConnection("Rennes", "Cork", "Standard", standardTravel + marketTax);
     
-    createConnection("Bordeaux", "Paris", premiumTravel);
-    createConnection("Bordeaux", "Rennes", standardTravel);
-    createConnection("Bordeaux", "Montpellier", standardTravel);
-    createConnection("Bordeaux", "Barcelona", standardTravel + marketTax);
+    createConnection("Bordeaux", "Paris", "Premium", premiumTravel);
+    createConnection("Bordeaux", "Rennes", "Standard", standardTravel);
+    createConnection("Bordeaux", "Montpellier", "Standard", standardTravel);
+    createConnection("Bordeaux", "Barcelona", "Standard", standardTravel + marketTax);
 
-    createConnection("Lyon", "Paris", standardTravel);
-    createConnection("Lyon", "Montpellier", standardTravel);
-    createConnection("Lyon", "Zurich", standardTravel + marketTax);
+    createConnection("Lyon", "Paris", "Standard", standardTravel);
+    createConnection("Lyon", "Montpellier", "Standard", standardTravel);
+    createConnection("Lyon", "Zurich", "Standard", standardTravel + marketTax);
 
-    createConnection("Montpellier", "Bordeaux", standardTravel);
-    createConnection("Montpellier", "Lyon", standardTravel);
-    createConnection("Montpellier", "Barcelona", standardTravel + marketTax);
-    createConnection("Montpellier", "Milan", standardTravel + marketTax);
+    createConnection("Montpellier", "Bordeaux", "Standard", standardTravel);
+    createConnection("Montpellier", "Lyon", "Standard", standardTravel);
+    createConnection("Montpellier", "Barcelona", "Standard", standardTravel + marketTax);
+    createConnection("Montpellier", "Milan", "Standard", standardTravel + marketTax);
 
-    createConnection("Brussels", "Paris", standardTravel);
-    createConnection("Brussels", "Amsterdam", standardTravel + marketTax);
-    createConnection("Brussels", "Frankfurt", standardTravel + marketTax);
+    createConnection("Brussels", "Paris", "Standard", standardTravel);
+    createConnection("Brussels", "Amsterdam", "Standard", standardTravel + marketTax);
+    createConnection("Brussels", "Frankfurt", "Standard", standardTravel + marketTax);
 
     /*--- Germanic Regional Market ---*/
     // Germany
-    createConnection("Berlin", "Paris", premiumTravel + marketTax);
-    createConnection("Berlin", "Gothenburg", premiumTravel + marketTax);
-    createConnection("Berlin", "Budapest", premiumTravel + marketTax);
-    createConnection("Berlin", "Amsterdam", standardTravel);
-    createConnection("Berlin", "Frankfurt", standardTravel);
-    createConnection("Berlin", "Stuttgart", standardTravel);
-    createConnection("Berlin", "Vejle", standardTravel + marketTax);
-    createConnection("Berlin", "Koszalin", standardTravel + marketTax);
-    createConnection("Berlin", "Warsaw", standardTravel + marketTax);
-    createConnection("Berlin", "Prague", standardTravel + marketTax);
-    createConnection("Berlin", "Linz", standardTravel);
+    createConnection("Berlin", "Paris", "Premium", premiumTravel + marketTax);
+    createConnection("Berlin", "Gothenburg", "Premium", premiumTravel + marketTax);
+    createConnection("Berlin", "Budapest", "Premium", premiumTravel + marketTax);
+    createConnection("Berlin", "Amsterdam", "Standard", standardTravel);
+    createConnection("Berlin", "Frankfurt", "Standard", standardTravel);
+    createConnection("Berlin", "Stuttgart", "Standard", standardTravel);
+    createConnection("Berlin", "Vejle", "Standard", standardTravel + marketTax);
+    createConnection("Berlin", "Koszalin", "Standard", standardTravel + marketTax);
+    createConnection("Berlin", "Warsaw", "Standard", standardTravel + marketTax);
+    createConnection("Berlin", "Prague", "Standard", standardTravel + marketTax);
+    createConnection("Berlin", "Linz", "Standard", standardTravel);
 
-    createConnection("Frankfurt", "Berlin", standardTravel);
-    createConnection("Frankfurt", "Amsterdam", standardTravel);
-    createConnection("Frankfurt", "Brussels", standardTravel + marketTax);
-    createConnection("Frankfurt", "Stuttgart", standardTravel);
-    createConnection("Frankfurt", "Vejle", standardTravel + marketTax);
-    createConnection("Frankfurt", "Koszalin", standardTravel + marketTax);
+    createConnection("Frankfurt", "Berlin", "Standard", standardTravel);
+    createConnection("Frankfurt", "Amsterdam", "Standard", standardTravel);
+    createConnection("Frankfurt", "Brussels", "Standard", standardTravel + marketTax);
+    createConnection("Frankfurt", "Stuttgart", "Standard", standardTravel);
+    createConnection("Frankfurt", "Vejle", "Standard", standardTravel + marketTax);
+    createConnection("Frankfurt", "Koszalin", "Standard", standardTravel + marketTax);
 
-    createConnection("Stuttgart", "Berlin", standardTravel);
-    createConnection("Stuttgart", "Frankfurt", standardTravel);
-    createConnection("Stuttgart", "Prague", standardTravel + marketTax);
-    createConnection("Stuttgart", "Linz", standardTravel);
-    createConnection("Stuttgart", "Zurich", standardTravel);
+    createConnection("Stuttgart", "Berlin", "Standard", standardTravel);
+    createConnection("Stuttgart", "Frankfurt", "Standard", standardTravel);
+    createConnection("Stuttgart", "Prague", "Standard", standardTravel + marketTax);
+    createConnection("Stuttgart", "Linz", "Standard", standardTravel);
+    createConnection("Stuttgart", "Zurich", "Standard", standardTravel);
     
-    createConnection("Amsterdam", "Berlin", standardTravel);
-    createConnection("Amsterdam", "Brussels", standardTravel + marketTax);
-    createConnection("Amsterdam", "Frankfurt", standardTravel);
-    createConnection("Amsterdam", "Vejle", standardTravel + marketTax);
-    createConnection("Amsterdam", "Koszalin", standardTravel + marketTax);
+    createConnection("Amsterdam", "Berlin", "Standard", standardTravel);
+    createConnection("Amsterdam", "Brussels", "Standard", standardTravel + marketTax);
+    createConnection("Amsterdam", "Frankfurt", "Standard", standardTravel);
+    createConnection("Amsterdam", "Vejle", "Standard", standardTravel + marketTax);
+    createConnection("Amsterdam", "Koszalin", "Standard", standardTravel + marketTax);
 
-    createConnection("Zurich", "Stuttgart", standardTravel);
-    createConnection("Zurich", "Lyon", standardTravel + marketTax);
-    createConnection("Zurich", "Milan", standardTravel + marketTax);
+    createConnection("Zurich", "Stuttgart", "Standard", standardTravel);
+    createConnection("Zurich", "Lyon", "Standard", standardTravel + marketTax);
+    createConnection("Zurich", "Milan", "Standard", standardTravel + marketTax);
 
-    createConnection("Linz", "Berlin", standardTravel); 
-    createConnection("Linz", "Stuttgart", standardTravel);
-    createConnection("Linz", "Prague", standardTravel + marketTax);
-    createConnection("Linz", "Milan", standardTravel + marketTax);
-    createConnection("Linz", "Rijeka", standardTravel + marketTax);    
+    createConnection("Linz", "Berlin", "Standard", standardTravel); 
+    createConnection("Linz", "Stuttgart", "Standard", standardTravel);
+    createConnection("Linz", "Prague", "Standard", standardTravel + marketTax);
+    createConnection("Linz", "Milan", "Standard", standardTravel + marketTax);
+    createConnection("Linz", "Rijeka", "Standard", standardTravel + marketTax);    
 
     /*--- Greco-Roman Regional Market ---*/
     // Italy & Italian Islands
-    createConnection("Rome", "Paris", premiumTravel + marketTax);
-    createConnection("Rome", "Milan", standardTravel);
-    createConnection("Rome", "Naples", standardTravel);
-    createConnection("Rome", "Cagliari", standardTravel);
-    createConnection("Rome", "Rijeka", standardTravel);
+    createConnection("Rome", "Paris", "Premium", premiumTravel + marketTax);
+    createConnection("Rome", "Milan", "Standard", standardTravel);
+    createConnection("Rome", "Naples", "Standard", standardTravel);
+    createConnection("Rome", "Cagliari", "Standard", standardTravel);
+    createConnection("Rome", "Rijeka", "Standard", standardTravel);
     
-    createConnection("Milan", "Rome", standardTravel);
-    createConnection("Milan", "Montpellier", standardTravel + marketTax);
-    createConnection("Milan", "Zurich", standardTravel + marketTax);
-    createConnection("Milan", "Linz", standardTravel + marketTax);
-    createConnection("Milan", "Rijeka", standardTravel + marketTax);
+    createConnection("Milan", "Rome", "Standard", standardTravel);
+    createConnection("Milan", "Montpellier", "Standard", standardTravel + marketTax);
+    createConnection("Milan", "Zurich", "Standard", standardTravel + marketTax);
+    createConnection("Milan", "Linz", "Standard", standardTravel + marketTax);
+    createConnection("Milan", "Rijeka", "Standard", standardTravel + marketTax);
 
-    createConnection("Naples", "Rome", standardTravel);
-    createConnection("Naples", "Cagliari", standardTravel);
-    createConnection("Naples", "Palermo", standardTravel);
-    createConnection("Naples", "Rijeka", standardTravel + marketTax);
+    createConnection("Naples", "Rome", "Standard", standardTravel);
+    createConnection("Naples", "Cagliari", "Standard", standardTravel);
+    createConnection("Naples", "Palermo", "Standard", standardTravel);
+    createConnection("Naples", "Rijeka", "Standard", standardTravel + marketTax);
 
-    createConnection("Cagliari", "Rome", standardTravel);
-    createConnection("Cagliari", "Naples", standardTravel);
-    createConnection("Cagliari", "Palermo", standardTravel);
-    createConnection("Cagliari", "Malaga", standardTravel + marketTax);
-    createConnection("Cagliari", "Valencia", standardTravel + marketTax);
+    createConnection("Cagliari", "Rome", "Standard", standardTravel);
+    createConnection("Cagliari", "Naples", "Standard", standardTravel);
+    createConnection("Cagliari", "Palermo", "Standard", standardTravel);
+    createConnection("Cagliari", "Malaga", "Standard", standardTravel + marketTax);
+    createConnection("Cagliari", "Valencia", "Standard", standardTravel + marketTax);
 
-    createConnection("Palermo", "Cagliari", standardTravel);
-    createConnection("Palermo", "Naples", standardTravel);
-    createConnection("Palermo", "Malaga", standardTravel + marketTax);
-    createConnection("Palermo", "Valencia", standardTravel + marketTax);
-    createConnection("Palermo", "Athens", standardTravel);
-    createConnection("Palermo", "Heraklion", standardTravel);
+    createConnection("Palermo", "Cagliari", "Standard", standardTravel);
+    createConnection("Palermo", "Naples", "Standard", standardTravel);
+    createConnection("Palermo", "Malaga", "Standard", standardTravel + marketTax);
+    createConnection("Palermo", "Valencia", "Standard", standardTravel + marketTax);
+    createConnection("Palermo", "Athens", "Standard", standardTravel);
+    createConnection("Palermo", "Heraklion", "Standard", standardTravel);
 
     // Greece & Greek Islands
-    createConnection("Athens", "Budapest", premiumTravel + marketTax);
-    createConnection("Athens", "Palermo", standardTravel);
-    createConnection("Athens", "Heraklion", standardTravel);
-    createConnection("Athens", "Thessaloniki", standardTravel);
-    createConnection("Athens", "Izmir", standardTravel + marketTax);
+    createConnection("Athens", "Budapest", "Premium", premiumTravel + marketTax);
+    createConnection("Athens", "Palermo", "Standard", standardTravel);
+    createConnection("Athens", "Heraklion", "Standard", standardTravel);
+    createConnection("Athens", "Thessaloniki", "Standard", standardTravel);
+    createConnection("Athens", "Izmir", "Standard", standardTravel + marketTax);
 
-    createConnection("Thessaloniki", "Athens", standardTravel);
-    createConnection("Thessaloniki", "Heraklion", standardTravel);
-    createConnection("Thessaloniki", "Izmir", standardTravel + marketTax);
-    createConnection("Thessaloniki", "Kragujevac", standardTravel + marketTax);
-    createConnection("Thessaloniki", "Istanbul", standardTravel + marketTax);
+    createConnection("Thessaloniki", "Athens", "Standard", standardTravel);
+    createConnection("Thessaloniki", "Heraklion", "Standard", standardTravel);
+    createConnection("Thessaloniki", "Izmir", "Standard", standardTravel + marketTax);
+    createConnection("Thessaloniki", "Kragujevac", "Standard", standardTravel + marketTax);
+    createConnection("Thessaloniki", "Istanbul", "Standard", standardTravel + marketTax);
     
-    createConnection("Heraklion", "Athens", standardTravel);
-    createConnection("Heraklion", "Palermo", standardTravel);
-    createConnection("Heraklion", "Izmir", standardTravel + marketTax);
-    createConnection("Heraklion", "Kayseri", standardTravel + marketTax);
-    createConnection("Heraklion", "Thessaloniki", standardTravel);
+    createConnection("Heraklion", "Athens", "Standard", standardTravel);
+    createConnection("Heraklion", "Palermo", "Standard", standardTravel);
+    createConnection("Heraklion", "Izmir", "Standard", standardTravel + marketTax);
+    createConnection("Heraklion", "Kayseri", "Standard", standardTravel + marketTax);
+    createConnection("Heraklion", "Thessaloniki", "Standard", standardTravel);
 
     /*--- Northern European Regional Market ---*/
-    createConnection("Vejle", "Berlin", standardTravel + marketTax);
-    createConnection("Vejle", "Amsterdam", standardTravel + marketTax);
-    createConnection("Vejle", "Koszalin", standardTravel + marketTax);
-    createConnection("Vejle", "Frankfurt", standardTravel + marketTax);
-    createConnection("Vejle", "Gothenburg", standardTravel);
-    createConnection("Vejle", "Oslo", standardTravel);
+    createConnection("Vejle", "Berlin", "Standard", standardTravel + marketTax);
+    createConnection("Vejle", "Amsterdam", "Standard", standardTravel + marketTax);
+    createConnection("Vejle", "Koszalin", "Standard", standardTravel + marketTax);
+    createConnection("Vejle", "Frankfurt", "Standard", standardTravel + marketTax);
+    createConnection("Vejle", "Gothenburg", "Standard", standardTravel);
+    createConnection("Vejle", "Oslo", "Standard", standardTravel);
     
-    createConnection("Oslo", "Edinburgh", standardTravel + marketTax);
-    createConnection("Oslo", "Gothenburg", standardTravel);
-    createConnection("Oslo", "Vejle", standardTravel);
+    createConnection("Oslo", "Edinburgh", "Standard", standardTravel + marketTax);
+    createConnection("Oslo", "Gothenburg", "Standard", standardTravel);
+    createConnection("Oslo", "Vejle", "Standard", standardTravel);
 
-    createConnection("Gothenburg", "Oslo", standardTravel);
-    createConnection("Gothenburg", "Vejle", standardTravel);
-    createConnection("Gothenburg", "Tallinn", standardTravel);
-    createConnection("Gothenburg", "Berlin", premiumTravel + marketTax);
+    createConnection("Gothenburg", "Oslo", "Standard", standardTravel);
+    createConnection("Gothenburg", "Vejle", "Standard", standardTravel);
+    createConnection("Gothenburg", "Tallinn", "Standard", standardTravel);
+    createConnection("Gothenburg", "Berlin", "Premium", premiumTravel + marketTax);
     
-    createConnection("Tallinn", "Gothenburg", standardTravel);
-    createConnection("Tallinn", "Riga", standardTravel);
+    createConnection("Tallinn", "Gothenburg", "Standard", standardTravel);
+    createConnection("Tallinn", "Riga", "Standard", standardTravel);
     
-    createConnection("Riga", "Tallinn", standardTravel);
-    createConnection("Riga", "Kaunas", standardTravel);
+    createConnection("Riga", "Tallinn", "Standard", standardTravel);
+    createConnection("Riga", "Kaunas", "Standard", standardTravel);
     
-    createConnection("Kaunas", "Riga", standardTravel);
-    createConnection("Kaunas", "Koszalin", standardTravel + marketTax);
-    createConnection("Kaunas", "Warsaw", standardTravel + marketTax);
-    createConnection("Kaunas", "Minsk", standardTravel + marketTax);
-    createConnection("Kaunas", "Ternopil", standardTravel + marketTax);
+    createConnection("Kaunas", "Riga", "Standard", standardTravel);
+    createConnection("Kaunas", "Koszalin", "Standard", standardTravel + marketTax);
+    createConnection("Kaunas", "Warsaw", "Standard", standardTravel + marketTax);
+    createConnection("Kaunas", "Minsk", "Standard", standardTravel + marketTax);
+    createConnection("Kaunas", "Ternopil", "Standard", standardTravel + marketTax);
 
     /*--- Eastern European Regional Market ---*/
     // Poland
-    createConnection("Warsaw", "Koszalin", standardTravel);
-    createConnection("Warsaw", "Berlin", standardTravel + marketTax);
-    createConnection("Warsaw", "Prague", standardTravel);
-    createConnection("Warsaw", "Ternopil", standardTravel);
-    createConnection("Warsaw", "Kaunas", standardTravel);
-    createConnection("Warsaw", "Budapest", standardTravel);
-    createConnection("Warsaw", "Minsk", standardTravel);
+    createConnection("Warsaw", "Koszalin", "Standard", standardTravel);
+    createConnection("Warsaw", "Berlin", "Standard", standardTravel + marketTax);
+    createConnection("Warsaw", "Prague", "Standard", standardTravel);
+    createConnection("Warsaw", "Ternopil", "Standard", standardTravel);
+    createConnection("Warsaw", "Kaunas", "Standard", standardTravel);
+    createConnection("Warsaw", "Budapest", "Standard", standardTravel);
+    createConnection("Warsaw", "Minsk", "Standard", standardTravel);
 
-    createConnection("Koszalin", "Warsaw", standardTravel);
-    createConnection("Koszalin", "Velje", standardTravel + marketTax);
-    createConnection("Koszalin", "Amsterdam", standardTravel + marketTax);
-    createConnection("Koszalin", "Frankfurt", standardTravel + marketTax);
-    createConnection("Koszalin", "Prague", standardTravel);
-    createConnection("Koszalin", "Berlin", standardTravel + marketTax);
-    createConnection("Koszalin", "Kaunas", standardTravel + marketTax);
+    createConnection("Koszalin", "Warsaw", "Standard", standardTravel);
+    createConnection("Koszalin", "Velje", "Standard", standardTravel + marketTax);
+    createConnection("Koszalin", "Amsterdam", "Standard", standardTravel + marketTax);
+    createConnection("Koszalin", "Frankfurt", "Standard", standardTravel + marketTax);
+    createConnection("Koszalin", "Prague", "Standard", standardTravel);
+    createConnection("Koszalin", "Berlin", "Standard", standardTravel + marketTax);
+    createConnection("Koszalin", "Kaunas", "Standard", standardTravel + marketTax);
 
-    createConnection("Budapest", "Berlin", premiumTravel + marketTax);
-    createConnection("Budapest", "Athens", premiumTravel + marketTax);
-    createConnection("Budapest", "Rijeka", standardTravel);
-    createConnection("Budapest", "Sarajevo", standardTravel);
-    createConnection("Budapest", "Prague", standardTravel);
-    createConnection("Budapest", "Warsaw", standardTravel);
-    createConnection("Budapest", "Brasov", standardTravel);
-    createConnection("Budapest", "Kragujevac", standardTravel);
-    createConnection("Budapest", "Ternopil", standardTravel);
+    createConnection("Budapest", "Berlin", "Premium", premiumTravel + marketTax);
+    createConnection("Budapest", "Athens", "Premium", premiumTravel + marketTax);
+    createConnection("Budapest", "Rijeka", "Standard", standardTravel);
+    createConnection("Budapest", "Sarajevo", "Standard", standardTravel);
+    createConnection("Budapest", "Prague", "Standard", standardTravel);
+    createConnection("Budapest", "Warsaw", "Standard", standardTravel);
+    createConnection("Budapest", "Brasov", "Standard", standardTravel);
+    createConnection("Budapest", "Kragujevac", "Standard", standardTravel);
+    createConnection("Budapest", "Ternopil", "Standard", standardTravel);
 
-    createConnection("Prague", "Berlin", standardTravel + marketTax);
-    createConnection("Prague", "Stuttgart", standardTravel + marketTax);
-    createConnection("Prague", "Linz", standardTravel + marketTax);
-    createConnection("Prague", "Koszalin", standardTravel);
-    createConnection("Prague", "Warsaw", standardTravel);
-    createConnection("Prague", "Budapest", standardTravel);
+    createConnection("Prague", "Berlin", "Standard", standardTravel + marketTax);
+    createConnection("Prague", "Stuttgart", "Standard", standardTravel + marketTax);
+    createConnection("Prague", "Linz", "Standard", standardTravel + marketTax);
+    createConnection("Prague", "Koszalin", "Standard", standardTravel);
+    createConnection("Prague", "Warsaw", "Standard", standardTravel);
+    createConnection("Prague", "Budapest", "Standard", standardTravel);
 
-    createConnection("Rijeka", "Rome", standardTravel + marketTax);
-    createConnection("Rijeka", "Milan", standardTravel + marketTax);
-    createConnection("Rijeka", "Linz", standardTravel + marketTax);
-    createConnection("Rijeka", "Naples", standardTravel + marketTax);
-    createConnection("Rijeka", "Sarajevo", standardTravel);
-    createConnection("Rijeka", "Budapest", standardTravel);
+    createConnection("Rijeka", "Rome", "Standard", standardTravel + marketTax);
+    createConnection("Rijeka", "Milan", "Standard", standardTravel + marketTax);
+    createConnection("Rijeka", "Linz", "Standard", standardTravel + marketTax);
+    createConnection("Rijeka", "Naples", "Standard", standardTravel + marketTax);
+    createConnection("Rijeka", "Sarajevo", "Standard", standardTravel);
+    createConnection("Rijeka", "Budapest", "Standard", standardTravel);
 
-    createConnection("Sarajevo", "Rijeka", standardTravel);
-    createConnection("Sarajevo", "Budapest", standardTravel);
-    createConnection("Sarajevo", "Kragujevac", standardTravel);
+    createConnection("Sarajevo", "Rijeka", "Standard", standardTravel);
+    createConnection("Sarajevo", "Budapest", "Standard", standardTravel);
+    createConnection("Sarajevo", "Kragujevac", "Standard", standardTravel);
     
-    createConnection("Kragujevac", "Sarajevo", standardTravel);
-    createConnection("Kragujevac", "Budapest", standardTravel);
-    createConnection("Kragujevac", "Thessaloniki", standardTravel + marketTax);
-    createConnection("Kragujevac", "Istanbul", standardTravel);
-    createConnection("Kragujevac", "Brasov", standardTravel);
-    createConnection("Kragujevac", "Sliven", standardTravel);
+    createConnection("Kragujevac", "Sarajevo", "Standard", standardTravel);
+    createConnection("Kragujevac", "Budapest", "Standard", standardTravel);
+    createConnection("Kragujevac", "Thessaloniki", "Standard", standardTravel + marketTax);
+    createConnection("Kragujevac", "Istanbul", "Standard", standardTravel);
+    createConnection("Kragujevac", "Brasov", "Standard", standardTravel);
+    createConnection("Kragujevac", "Sliven", "Standard", standardTravel);
 
-    createConnection("Sliven", "Brasov", standardTravel);
-    createConnection("Sliven", "Istanbul", standardTravel);
-    createConnection("Sliven", "Kragujevac", standardTravel);
-    createConnection("Sliven", "Chisinau", standardTravel);
+    createConnection("Sliven", "Brasov", "Standard", standardTravel);
+    createConnection("Sliven", "Istanbul", "Standard", standardTravel);
+    createConnection("Sliven", "Kragujevac", "Standard", standardTravel);
+    createConnection("Sliven", "Chisinau", "Standard", standardTravel);
 
-    createConnection("Brasov", "Budapest", standardTravel);
-    createConnection("Brasov", "Sliven", standardTravel);
-    createConnection("Brasov", "Kragujevac", standardTravel);
-    createConnection("Brasov", "Chisinau", standardTravel);
-    createConnection("Brasov", "Ternopil", standardTravel);
+    createConnection("Brasov", "Budapest", "Standard", standardTravel);
+    createConnection("Brasov", "Sliven", "Standard", standardTravel);
+    createConnection("Brasov", "Kragujevac", "Standard", standardTravel);
+    createConnection("Brasov", "Chisinau", "Standard", standardTravel);
+    createConnection("Brasov", "Ternopil", "Standard", standardTravel);
 
-    createConnection("Chisinau", "Brasov", standardTravel);
-    createConnection("Chisinau", "Sliven", standardTravel);
-    createConnection("Chisinau", "Ternopil", standardTravel);
-    createConnection("Chisinau", "Kyiv", standardTravel);
-    createConnection("Chisinau", "Kayseri", standardTravel);
+    createConnection("Chisinau", "Brasov", "Standard", standardTravel);
+    createConnection("Chisinau", "Sliven", "Standard", standardTravel);
+    createConnection("Chisinau", "Ternopil", "Standard", standardTravel);
+    createConnection("Chisinau", "Kyiv", "Standard", standardTravel);
+    createConnection("Chisinau", "Kayseri", "Standard", standardTravel);
 
-    createConnection("Minsk", "Warsaw", standardTravel);
-    createConnection("Minsk", "Kyiv", standardTravel);
-    createConnection("Minsk", "Kaunas", standardTravel + marketTax);
-    createConnection("Minsk", "Warsaw", standardTravel);
+    createConnection("Minsk", "Warsaw", "Standard", standardTravel);
+    createConnection("Minsk", "Kyiv", "Standard", standardTravel);
+    createConnection("Minsk", "Kaunas", "Standard", standardTravel + marketTax);
+    createConnection("Minsk", "Warsaw", "Standard", standardTravel);
     
     // Ukraine
-    createConnection("Kyiv", "Minsk", standardTravel);
-    createConnection("Kyiv", "Ternopil", standardTravel);
-    createConnection("Kyiv", "Chisinau", standardTravel);
-    createConnection("Kyiv", "Kayseri", standardTravel);
+    createConnection("Kyiv", "Minsk", "Standard", standardTravel);
+    createConnection("Kyiv", "Ternopil", "Standard", standardTravel);
+    createConnection("Kyiv", "Chisinau", "Standard", standardTravel);
+    createConnection("Kyiv", "Kayseri", "Standard", standardTravel);
     
-    createConnection("Ternopil", "Warsaw", standardTravel);
-    createConnection("Ternopil", "Minsk", standardTravel);
-    createConnection("Ternopil", "Kaunas", standardTravel + marketTax);
-    createConnection("Ternopil", "Kyiv", standardTravel);
-    createConnection("Ternopil", "Chisinau", standardTravel);
-    createConnection("Ternopil", "Budapest", standardTravel);
-    createConnection("Ternopil", "Brasov", standardTravel);
+    createConnection("Ternopil", "Warsaw", "Standard", standardTravel);
+    createConnection("Ternopil", "Minsk", "Standard", standardTravel);
+    createConnection("Ternopil", "Kaunas", "Standard", standardTravel + marketTax);
+    createConnection("Ternopil", "Kyiv", "Standard", standardTravel);
+    createConnection("Ternopil", "Chisinau", "Standard", standardTravel);
+    createConnection("Ternopil", "Budapest", "Standard", standardTravel);
+    createConnection("Ternopil", "Brasov", "Standard", standardTravel);
 
     // Turkey
-    createConnection("Istanbul", "Kayseri", standardTravel);
-    createConnection("Istanbul", "Izmir", standardTravel);
-    createConnection("Istanbul", "Thessaloniki", standardTravel + marketTax);
-    createConnection("Istanbul", "Kragujevac", standardTravel);
-    createConnection("Istanbul", "Sliven", standardTravel);
+    createConnection("Istanbul", "Kayseri", "Standard", standardTravel);
+    createConnection("Istanbul", "Izmir", "Standard", standardTravel);
+    createConnection("Istanbul", "Thessaloniki", "Standard", standardTravel + marketTax);
+    createConnection("Istanbul", "Kragujevac", "Standard", standardTravel);
+    createConnection("Istanbul", "Sliven", "Standard", standardTravel);
 
-    createConnection("Izmir", "Istanbul", standardTravel);
-    createConnection("Izmir", "Kayseri", standardTravel);
-    createConnection("Izmir", "Thessaloniki", standardTravel + marketTax);
-    createConnection("Izmir", "Athens", standardTravel + marketTax);
-    createConnection("Izmir", "Heraklion", standardTravel + marketTax);
+    createConnection("Izmir", "Istanbul", "Standard", standardTravel);
+    createConnection("Izmir", "Kayseri", "Standard", standardTravel);
+    createConnection("Izmir", "Thessaloniki", "Standard", standardTravel + marketTax);
+    createConnection("Izmir", "Athens", "Standard", standardTravel + marketTax);
+    createConnection("Izmir", "Heraklion", "Standard", standardTravel + marketTax);
     
-    createConnection("Kayseri", "Istanbul", standardTravel);
-    createConnection("Kayseri", "Izmir", standardTravel);
-    createConnection("Kayseri", "Heraklion", standardTravel + marketTax);
-    createConnection("Kayseri", "Chisinau", standardTravel);
-    createConnection("Kayseri", "Kyiv", standardTravel);
+    createConnection("Kayseri", "Istanbul", "Standard", standardTravel);
+    createConnection("Kayseri", "Izmir", "Standard", standardTravel);
+    createConnection("Kayseri", "Heraklion", "Standard", standardTravel + marketTax);
+    createConnection("Kayseri", "Chisinau", "Standard", standardTravel);
+    createConnection("Kayseri", "Kyiv", "Standard", standardTravel);
 }
