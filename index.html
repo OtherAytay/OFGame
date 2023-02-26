@@ -61,7 +61,8 @@
                                             aria-label="Basic example">
                                             <button type="button" class="btn btn-oral">Oral <br /> 125%</button>
                                             <button type="button" class="btn btn-anal">Anal <br /> 125%</button>
-                                            <button type="button" class="btn btn-outline-sissy">Sissy <br /> 75%</button>
+                                            <button type="button" class="btn btn-outline-sissy">Sissy <br />
+                                                75%</button>
                                             <button type="button" class="btn btn-outline-bondage">Bondage <br />
                                                 75%</button>
                                         </div>
@@ -69,9 +70,11 @@
 
                                         <div class="card border-oral mt-3">
                                             <img class="card-img-top" src="Paris.jpeg">
-                                            <h4 class="card-title card-header text-center text-oral fw-bold">Oral: Contract #7</h4>
+                                            <h4 class="card-title card-header text-center text-oral fw-bold">Oral:
+                                                Contract #7</h4>
                                             <div class="card-body">
-                                                <p>Sitting on your knees. Deepthroat 20 times, holding each for 5 seconds.</p>
+                                                <p>Sitting on your knees. Deepthroat 20 times, holding each for 5
+                                                    seconds.</p>
                                                 <table class="table table-sm table-bordered border-oral mt-2 mb-0">
                                                     <thead>
                                                         <th colspan="3">Follower Yield</th>
@@ -83,7 +86,7 @@
                                                         </th>
                                                     </thead>
                                                     <tbody>
-                                                        <tr> 
+                                                        <tr>
                                                             <td>13</td>
                                                             <td class="text-oral">13</td>
                                                             <td>26</td>
@@ -148,7 +151,7 @@
 
             </div>
             <div class="col-md-6 col-lg-8 col-xl-9 vh-100">
-                <div class="container" >
+                <div class="container">
                     <div id="interactive-map" class="interactive-map" style="width: 1799px ; height: 1390px"></div>
                 </div>
             </div>
@@ -166,10 +169,10 @@
         var element = document.getElementById("interactive-map")
         var panzoom = Panzoom(element, {
             startScale: 0.6,
-            minScale: 0.6,
+            minScale: 0.4,
             maxScale: 2,
-            startX: -580,
-            startY: -190,
+            startX: -500,
+            startY: -340,
             animate: true
         })
         element.parentElement.addEventListener('wheel', panzoom.zoomWithWheel)
@@ -181,11 +184,11 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+            const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
             const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl, {
                 container: '#interactive-map',
                 trigger: "hover click"
-            }))
+            }));
         }, false);
     </script>
 
