@@ -1,4 +1,4 @@
-function MapNode({ city, spec, size, market, x, y, }) {
+function MapNode({ city, spec, size, market, x, y, posts }) {
     var specCode = specCoding(spec);
     var sizeCode = "fs-3";
     if (size == "Medium") {
@@ -7,18 +7,26 @@ function MapNode({ city, spec, size, market, x, y, }) {
         sizeCode = "fs-1"
     }
 
+    var icon = "bi-circle-fill"
+    var fs = "";
+    if (city == currentCity) {
+        icon = "bi-person-circle";
+        fs = "4em";
+        sizeCode = "";
+    }
+
     return React.createElement(
         'a',
         {
             type: "button",
-            class: "bi-circle-fill text-" + specCode + " " + sizeCode,
+            class: icon + " text-" + specCode + " " + sizeCode,
             'data-bs-toggle': "popover",
             'data-bs-title': city,
             'data-bs-custom-class': specCode + "-popover text-center fs-3",
             'data-bs-placement': "top",
-            'data-bs-content': spec + "<br/>" + market + " Regional Market",
+            'data-bs-content': spec + "<br/>" + market + " Regional Market <br/> Posts: " + posts,
             'data-bs-html': "true",
-            style: {left: x , top: y}
+            style: { left: x, top: y, 'font-size': fs }
         },
         null
     );
@@ -33,52 +41,25 @@ function populateMap() {
             size: properties.size,
             market: properties.market,
             x: properties.x + "%",
-            y: properties.y * 0.665  + "%"
+            y: properties.y * 0.665 + "%",
+            posts: userCities[city]["posts"]
         }, null))
     }
     mapNodes.push(React.createElement(
         'img',
-        { src: 'EuroMap.png' },
+        { src: 'images/EuroMap.png' },
         null
     ))
     return (mapNodes);
 }
 
 function generateMapNodes() {
-    generateCities();
-    generateConnections();
-
     const mapRoot = ReactDOM.createRoot(document.getElementById("interactive-map"));
     mapRoot.render(populateMap());
-}
 
-function specCoding(specText) {
-    // Standard
-    if (specText == "Oral") {
-        return "oral"
-    }
-    if (specText == "Anal") {
-        return "anal"
-    }
-    if (specText == "Sissy") {
-        return "sissy"
-    }
-    if (specText == "Bondage") {
-        return "bondage"
-    }
-
-    // Fusion
-    if (specText == "Oral / Anal") {
-        return "fusion-OA"
-    } else if (specText == "Oral / Sissy") {
-        return "fusion-OS"
-    } else if (specText == "Oral / Bondage") {
-        return "fusion-OB"
-    } else if (specText == "Anal / Sissy") {
-        return "fusion-AS"
-    } else if (specText == "Anal / Bondage") {
-        return "fusion-AB"
-    } else if (specText == "Sissy / Bondage") {
-        return "fusion-SB"
-    }
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl, {
+        container: '#interactive-map',
+        trigger: "hover click"
+    }));
 }
