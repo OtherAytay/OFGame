@@ -11,41 +11,41 @@ function randRange(min, max, integer) {
 }
 
 function saveLocal() {
-    localStorage["userCities"] = JSON.stringify(userCities);
-    localStorage["currentCity"] = currentCity;
-    localStorage["currentRolls"] = JSON.stringify(currentRolls);
-    localStorage["followers"] = JSON.stringify(followers)
-    localStorage["perfView"] = perfView;
-    localStorage["augView"] = augView;
-    localStorage["fusionView"] = fusionView;
-    localStorage["activeAug"] = activeAug;
+    localStorage["OFGame-localSave"] = true;
+    localStorage["OFGame-userCities"] = JSON.stringify(userCities);
+    localStorage["OFGame-currentCity"] = currentCity;
+    localStorage["OFGame-currentRolls"] = JSON.stringify(currentRolls);
+    localStorage["OFGame-followers"] = JSON.stringify(followers)
+    localStorage["OFGame-perfView"] = perfView;
+    localStorage["OFGame-augView"] = augView;
+    localStorage["OFGame-fusionView"] = fusionView;
+    localStorage["OFGame-activeAug"] = activeAug;
 }
 
 function loadLocal() {
-    if (localStorage.length >= 8) {
-        userCities = JSON.parse(localStorage["userCities"]);
-        currentCity = localStorage["currentCity"];
-        currentRolls = JSON.parse(localStorage["currentRolls"]);
-        followers = JSON.parse(localStorage["followers"]);
-        perfView = JSON.parse(localStorage["perfView"]);
-        augView = JSON.parse(localStorage["augView"]);
-        fusionView = JSON.parse(localStorage["fusionView"]);
-        activeAug = JSON.parse(localStorage["activeAug"]);
+    if (localStorage["OFGame-localSave"] == "true") {
+        userCities = JSON.parse(localStorage["OFGame-userCities"]);
+        currentCity = localStorage["OFGame-currentCity"];
+        currentRolls = JSON.parse(localStorage["OFGame-currentRolls"]);
+        followers = JSON.parse(localStorage["OFGame-followers"]);
+        perfView = JSON.parse(localStorage["OFGame-perfView"]);
+        augView = JSON.parse(localStorage["OFGame-augView"]);
+        fusionView = JSON.parse(localStorage["OFGame-fusionView"]);
+        activeAug = JSON.parse(localStorage["OFGame-activeAug"]);
     } else {
         userDataFlag = false;
-        saveLocal()
+        saveLocal();
+        generateCities();
     }
 }
 
 function exportSave() {
-    var data = JSON.stringify(localStorage);
-
     var saveDate = new Date()
-    saveDate = saveDate.toISOString().slice(0, 10) + " " + saveDate.toTimeString().slice(0, 8).replace(":", "-")
+    saveDate = saveDate.toISOString().slice(0, 10) + " " + saveDate.toTimeString().slice(0, 8).replaceAll(":", "-");
 
-    let saveName = 'OFGame-Save - ' + saveDate;
+    let saveName = 'OFGame - ' + saveDate;
 
-    let saveData = new Blob([JSON.stringify(data, null, 4)], {
+    let saveData = new Blob([JSON.stringify(localStorage)], {
         type: 'application/json',
         name: saveName
     });
@@ -96,9 +96,17 @@ function fileUpload() {
 
 function importSave() {
     const save = this.files[0];
-    localStorage["userCities"] = save["userCities"];
-    localStorage["currentCity"] = save["currentCity"];
-    loadLocal();
+    fr = new FileReader()
+    fr.readAsText(save);
+    fr.onload = function () {
+        saveData = JSON.parse(fr.result);
+        for (const [key, value] of Object.entries(saveData)) {
+            if (key.startsWith("OFGame")) {
+                localStorage[key] = value;
+            }
+        }
+        loadLocal();
+    }
 }
 
 function saveAs(content, fileName) {
