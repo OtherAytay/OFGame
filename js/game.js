@@ -5,7 +5,11 @@ var cityGraph = new Map(); // Adjacency List representation
 /* User Data */
 var userCities = {};
 var userDataFlag = true;
-var followers = [0, 0, 0, 0, 0] // General, Oral, Anal, Sissy, Bondage
+
+// Short-term followers for the last 4 posts - General, Oral, Anal, Sissy, Bondage
+var stFollowersRolling = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]];
+var ltFollowers = [0, 0, 0, 0, 0] // Long-term followers - General, Oral, Anal, Sissy, Bondage
+
 var currentCity = "Paris";
 var currentRolls = [0, 0, 0, 0]; // Oral, Anal, Sissy, Bondage rolls
 var perfView = 0 // 0: Oral, 1: Anal - corresponds to currentRolls idx
@@ -48,7 +52,7 @@ function newCity() {
 function travelCost(source, dest) {
     c1 = cities.get(source);
     c2 = cities.get(dest);
-    d = dist(c1.x, c1.y, c2.x, c2.y);
+    d = dist(c1.x, 0.665*c1.y, c2.x, 0.665*c2.y);
     if (cityGraph.get(source).find(con => con.destCity == dest).type == "Standard") {
         var c = C_std;
     } else {
@@ -56,7 +60,7 @@ function travelCost(source, dest) {
     }
 
     tax = 0
-    if (cities.get(city).market != cities.get(connections[i].destCity).market) {
+    if (cities.get(source).market != cities.get(dest).market) {
         tax = marketTax;
     }
 
@@ -102,51 +106,105 @@ function getYieldMods(city) {
 function calculateStandardFollowerYield(city, cat, roll) {
     var followerYields = [0, 0, 0, 0, 0]; // General, Oral, Anal, Sissy, Bondage
     
+    // calculate base yield
     var yield = (10 + 2 * roll) * getDiminishingReturnModifier(userCities[city].posts);
+    
+    // apply yield modifiers
     var yieldMods = getYieldMods(cities.get(city));
-
     if (cat == "Oral") {
         yield *= yieldMods[0];
-        followerYields[1] = Math.ceil(yield / 2);
     } else if (cat == "Anal") {
         yield *= yieldMods[1];
-        followerYields[2] = Math.ceil(yield / 2);
     } else if (cat == "Sissy") {
         yield *= yieldMods[2];
-        followerYields[3] = Math.ceil(yield / 2);
     } else {
         yield *= yieldMods[3];
+    }
+
+    // apply yield decay
+    decay = (30 - 5.6)*Math.max(0, (1 - getSaturationFactor())) + 5.6;
+    yield = Math.floor(Math.max(0, Math.min(yield, decay*Math.log(yield))));
+
+    // distribute yields
+    followerYields[0] = Math.floor(yield / 2);
+    if (cat == "Oral") {
+        followerYields[1] = Math.ceil(yield / 2);
+    } else if (cat == "Anal") {
+        followerYields[2] = Math.ceil(yield / 2);
+    } else if (cat == "Sissy") {
+        followerYields[3] = Math.ceil(yield / 2);
+    } else {
         followerYields[4] = Math.ceil(yield / 2);
     }
-    followerYields[0] = Math.floor(yield / 2);
 
     return followerYields;
 }
 
 function completeStandardPost(perfCat, perfRoll) {
     var perfYields = calculateStandardFollowerYield(currentCity, perfCat, perfRoll);
+    var augYields = [0, 0, 0, 0, 0]
     if (activeAug != null) {
         var augCat = contractTypes[activeAug];
         var augRoll = currentRolls[activeAug];
-        var augYields = calculateStandardFollowerYield(currentCity, augCat, augRoll);
+        augYields = calculateStandardFollowerYield(currentCity, augCat, augRoll);
     }
     
-    for (var i = 0; i < followers.length; i++) {
-        followers[i] += perfYields[i] + augYields[i];
+    var stFollowers = [0, 0, 0, 0, 0];
+    for (var i = 0; i < ltFollowers.length; i++) {
+        catYield = perfYields[i] + augYields[i];
+        stFollowers[i] += Math.floor(catYield / 2);
+        ltFollowers[i] += Math.ceil(catYield / 2);
     }
+    stFollowersRolling.unshift(stFollowers);
+    decayFollowers();
 
     currentRolls[contractTypes.indexOf(perfCat)] = randRange(1, 10, true);
     currentRolls[contractTypes.indexOf(augCat)] = randRange(1, 10, true);
-    activeAug = null;
+    toggleAug(contractTypes[activeAug]);
     userCities[currentCity]["posts"] += 1;
 
     localStorage["OFGame-userCities"] = JSON.stringify(userCities);
-    localStorage["OFGame-followers"] = JSON.stringify(followers);
+    localStorage["OFGame-stFollowersRolling"] = JSON.stringify(stFollowersRolling);
+    localStorage["OFGame-ltFollowers"] = JSON.stringify(ltFollowers);
     localStorage["OFGame-currentRolls"] = JSON.stringify(currentRolls);
     localStorage["OFGame-activeAug"] = activeAug;
     
     generateCityPanel();
     generateContractPanel();
+}
+
+function decayFollowers() {
+    // Short term follower decay
+    stFollowersRolling.pop()
+
+    // Long term follower decay
+    decayFactor = (1 - (0.1 * Math.random()/5));
+    console.log(decayFactor)
+    ltFollowers = ltFollowers.map(f => Math.floor(decayFactor*f));
+
+    // Check that there are 4 posts
+    // Category-specific decay (category not featured in last 4 posts)
+    var has4Posts = true;
+    var featured = [false, false, false, false];
+    for (var post = 0; post < stFollowersRolling.length; post++) {
+        var isPost = true;
+        for (var cat = 1; cat < stFollowersRolling[0].length; cat++) {
+            if (post[cat] > 0) {
+                featured[cat-1] = true;
+                isPost = true;
+            }
+        }
+        has4Posts = isPost;
+    }
+    
+    if (has4Posts) {
+        for (var cat = 0; cat < featured.length; cat++) {
+            if (featured[cat]) {
+                ltFollowers[cat+1] = Math.floor(ltFollowers[cat+1] * 0.75)
+            }
+        }
+    }
+    
 }
 
 function completeFusionPost(city) {
@@ -178,8 +236,8 @@ function completeFusionPost(city) {
             break;
     }
 
-    for (var i = 0; i < followers.length; i++) {
-        followers[i] += followerYield[i];
+    for (var i = 0; i < ltFollowers.length; i++) {
+        ltFollowers[i] += followerYield[i];
     }
 
     userCities[currentCity]["posts"] += 1;
@@ -187,7 +245,7 @@ function completeFusionPost(city) {
     fusionView = false;
 
     localStorage["OFGame-userCities"] = JSON.stringify(userCities);
-    localStorage["OFGame-followers"] = JSON.stringify(followers);
+    localStorage["OFGame-followers"] = JSON.stringify(ltFollowers);
     localStorage["OFGame-fusionView"] = fusionView
     generateCityPanel();
 }

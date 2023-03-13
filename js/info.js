@@ -1,4 +1,41 @@
 /*--- Information Retrieval ---*/
+function specCoding(specText) {
+    // Standard
+    if (specText == "Oral") {
+        return "oral"
+    }
+    if (specText == "Anal") {
+        return "anal"
+    }
+    if (specText == "Sissy") {
+        return "sissy"
+    }
+    if (specText == "Bondage") {
+        return "bondage"
+    }
+
+    // Fusion
+    if (specText == "Oral / Anal") {
+        return "fusion-OA"
+    } else if (specText == "Oral / Sissy") {
+        return "fusion-OS"
+    } else if (specText == "Oral / Bondage") {
+        return "fusion-OB"
+    } else if (specText == "Anal / Sissy") {
+        return "fusion-AS"
+    } else if (specText == "Anal / Bondage") {
+        return "fusion-AB"
+    } else if (specText == "Sissy / Bondage") {
+        return "fusion-SB"
+    } else {
+        return ""
+    }
+}
+
+function marketCoding(market) {
+    return market.toLowerCase();
+}
+
 
 function getOralContract(roll) {
     switch (roll) {

@@ -24,7 +24,6 @@ function generateContractPanel() {
 }
 
 function toggleAug(cat) {
-    
     switch (cat) {
         case "Sissy":
             if (activeAug == 2) {

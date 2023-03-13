@@ -63,9 +63,11 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
 
     var specCode = specCoding(spec);
     var marketCode = marketCoding(market);
+    var followers = getTotalFollowers();
+    var stFollowers = getSTFollowers();
 
     var buttonStyles = getButtonStyles(spec);
-
+    var specText = null;
     if (specCode.startsWith("fusion")) {
         var subSpecs = spec.match(/(\w*) \/ (\w*)/);
         var spec1Code = specCoding(subSpecs[1]);
@@ -90,7 +92,7 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
 
     return React.createElement(
         'div',
-        { class: "card text-center border-primary my-5" },
+        { class: "card shadow text-center border-primary my-5" },
         React.createElement(
             'div',
             {class: "card-header border-primary"},
@@ -116,6 +118,11 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
                     'li',
                     {class: "list-group-item border-" + marketCode},
                     getRegionalMarketCharacteristics(market)
+                ),
+                React.createElement(
+                    'li',
+                    {class: "list-group-item fs-5"},
+                    "Posts: " + posts + " → " + "Diminishing Returns: " + getDiminishingReturnModifier(posts) * 100 + "%"
                 )
             ),
             React.createElement(
@@ -152,19 +159,37 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
                             'div',
                             { class: "accordion-body text-center" },
                             React.createElement(
+                                'ul',
+                                {class: "list-group d-inline-flex justify-content-center"},
+                                React.createElement(
+                                    'li',
+                                    {class: "list-group-item"},
+                                    "Saturation: " + Math.round((getSaturationFactor() * 100 + Number.EPSILON) * 100) / 100 + "%"
+                                )
+                            ),
+                            React.createElement(
                                 'table',
                                 { class: "table table-sm table-bordered mt-2 mb-0" },
                                 React.createElement(
                                     'thead',
                                     null,
                                     React.createElement(
-                                        'th',
-                                        { colspan: "6" },
-                                        "Follower Yield"
+                                        'tr',
+                                        null,
+                                        React.createElement(
+                                            'th',
+                                            { colspan: "7" },
+                                            "Followers"
+                                        )
                                     ),
                                     React.createElement(
                                         'tr',
                                         null,
+                                        React.createElement(
+                                            'th',
+                                            null,
+                                            
+                                        ),
                                         React.createElement(
                                             'th',
                                             null,
@@ -199,10 +224,93 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
                                 ),
                                 React.createElement(
                                     'tbody',
-                                    null,
+                                    {class: "align-middle"},
                                     React.createElement(
                                         'tr',
                                         null,
+                                        React.createElement(
+                                            'td',
+                                            null,
+                                            "Short Term"
+                                        ),
+                                        React.createElement(
+                                            'td',
+                                            null,
+                                            stFollowers[0]
+                                        ),
+                                        React.createElement(
+                                            'td',
+                                            { class: "text-oral" },
+                                            stFollowers[1]
+                                        ),
+                                        React.createElement(
+                                            'td',
+                                            { class: "text-anal" },
+                                            stFollowers[2]
+                                        ),
+                                        React.createElement(
+                                            'td',
+                                            { class: "text-sissy" },
+                                            stFollowers[3]
+                                        ),
+                                        React.createElement(
+                                            'td',
+                                            { class: "text-bondage" },
+                                            stFollowers[4]
+                                        ),
+                                        React.createElement(
+                                            'td',
+                                            null,
+                                            getSTFollowers().reduce((a, b) => a + b, 0)
+                                        ),
+                                    ),
+                                    React.createElement(
+                                        'tr',
+                                        null,
+                                        React.createElement(
+                                            'td',
+                                            null,
+                                            "Long Term"
+                                        ),
+                                        React.createElement(
+                                            'td',
+                                            null,
+                                            ltFollowers[0]
+                                        ),
+                                        React.createElement(
+                                            'td',
+                                            { class: "text-oral" },
+                                            ltFollowers[1]
+                                        ),
+                                        React.createElement(
+                                            'td',
+                                            { class: "text-anal" },
+                                            ltFollowers[2]
+                                        ),
+                                        React.createElement(
+                                            'td',
+                                            { class: "text-sissy" },
+                                            ltFollowers[3]
+                                        ),
+                                        React.createElement(
+                                            'td',
+                                            { class: "text-bondage" },
+                                            ltFollowers[4]
+                                        ),
+                                        React.createElement(
+                                            'td',
+                                            null,
+                                            ltFollowers.reduce((a, b) => a + b, 0)
+                                        ),
+                                    ),
+                                    React.createElement(
+                                        'tr',
+                                        null,
+                                        React.createElement(
+                                            'td',
+                                            null,
+                                            "All"
+                                        ),
                                         React.createElement(
                                             'td',
                                             null,
@@ -248,11 +356,11 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
                         React.createElement(
                             'button',
                             {
-                                class: "accordion-button",
+                                class: "accordion-button collapsed",
                                 type: "button",
                                 'data-bs-toggle': "collapse",
                                 'data-bs-target': "#collapse-contracts",
-                                'aria-expanded': "true",
+                                'aria-expanded': "false",
                                 'aria-controls': "collapse-contracts",
                             },
                             "Contracts"
@@ -261,7 +369,7 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
                     React.createElement(
                         'div',
                         {
-                            class: "accordion-collapse collapse show",
+                            class: "accordion-collapse collapse",
                             id: "collapse-contracts",
                             'aria-labelledby': "contracts",
                             'data-bs-parent': "#cityPanelOptions"
@@ -269,84 +377,8 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
                         React.createElement(
                             'div',
                             { class: "accordion-body text-center" },
-                            React.createElement(
-                                'p',
-                                { class: "fs-3" },
-                                "Posts: " + posts
-                            ),
-                            React.createElement(
-                                'p',
-                                { class: "fs-4 fw-bold" },
-                                "Performative Contracts"
-                            ),
-                            React.createElement(
-                                'div',
-                                {
-                                    class: "btn-group btn-group-sm w-100 mb-2",
-                                },
-                                React.createElement(
-                                    'button',
-                                    {
-                                        id: "oral-show",
-                                        type: "button",
-                                        class: "btn fs-5 w-50 " + buttonStyles[0],
-                                        onClick: () => { setView('Oral') }
-                                    },
-                                    "Oral",
-                                    React.createElement('br', null, null),
-                                    yields[0] + "%"
-                                ),
-                                React.createElement(
-                                    'button',
-                                    {
-                                        id: "anal-show",
-                                        type: "button",
-                                        class: "btn fs-5 w-50 " + buttonStyles[1],
-                                        onClick: () => { setView('Anal') }
-                                    },
-                                    "Anal",
-                                    React.createElement('br', null, null),
-                                    yields[1] + "%"
-                                ),
-                            ),
-                            React.createElement(
-                                'p',
-                                { class: "fs-4 fw-bold" },
-                                "Augmentative Contracts"
-                            ),
-                            React.createElement(
-                                'div',
-                                {
-                                    class: "btn-group btn-group-sm w-100 mb-2",
-                                },
-                                React.createElement(
-                                    'button',
-                                    {
-                                        id: "sissy-show",
-                                        type: "button",
-                                        class: "btn fs-5 w-50 " + buttonStyles[2],
-                                        onClick: () => { setView('Sissy') }
-                                    },
-                                    "Sissy",
-                                    React.createElement('br', null, null),
-                                    yields[2] + "%"
-                                ),
-                                React.createElement(
-                                    'button',
-                                    {
-                                        id: "bondage-show",
-                                        type: "button",
-                                        class: "btn fs-5 w-50 " + buttonStyles[3],
-                                        onClick: () => { setView('Bondage') }
-                                    },
-                                    "Bondage",
-                                    React.createElement('br', null, null),
-                                    yields[3] + "%"
-                                ),
-                            ),
-                            //fusionButton
+                        
                         ),
-
                     )
                 ),
                 React.createElement(
@@ -413,7 +445,12 @@ function travelMenu({ city }) {
                         value: connections[i].destCity,
                         onClick: (e) => { travel(e.target.attributes.value.value) }
                     },
-                    connections[i].destCity + taxed
+                    connections[i].destCity + taxed + " ",
+                    React.createElement(
+                        'span',
+                        {class: "float-end"},
+                        "$" + Math.floor(travelCost(city, connections[i].destCity))
+                    )
                 )
             )
         )
@@ -469,7 +506,7 @@ function travelMenu({ city }) {
             ),
             React.createElement(
                 'ul',
-                { class: "dropdown-menu" },
+                { class: "dropdown-menu shadow-sm w-75" }, 
                 premium,
                 standard
             )

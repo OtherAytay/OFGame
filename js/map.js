@@ -24,7 +24,7 @@ function MapNode({ city, spec, size, market, x, y, posts }) {
             'data-bs-title': city,
             'data-bs-custom-class': specCode + "-popover text-center fs-3",
             'data-bs-placement': "top",
-            'data-bs-content': spec + "<br/>" + market + " Regional Market <br/> Posts: " + posts,
+            'data-bs-content': spec + "<br/>" + market, //+ " Regional Market <br/> Posts: " + posts,
             'data-bs-html': "true",
             style: { left: x, top: y, 'font-size': fs }
         },
