@@ -15,8 +15,8 @@ var fusionView = false;
 
 /* Constants */
 const contractTypes = ["Oral", "Anal", "Sissy", "Bondage"]
-const premiumTravel = 500; // large dotted line cost
-const standardTravel = 300; // small dotted line cost
+const C_prem = 20; // large dotted line cost
+const C_std = 35; // small dotted line cost
 const marketTax = 100; // Tax paid to transfer regional markets
 const citySpecBonus = 0.25; // 25% yield increase
 const citySpecPenalty = 0.25; // 25% yield decrease
@@ -32,6 +32,7 @@ function initializeGame() {
     }
 
     generateCityPanel();
+    generateContractPanel();
 }
 
 function newCity() {
@@ -41,7 +42,26 @@ function newCity() {
         randRange(1, 10, true),
         randRange(1, 10, true)
     ]
-    localStorage["currentRolls"] = JSON.stringify(currentRolls);
+    localStorage["OFGame-currentRolls"] = JSON.stringify(currentRolls);
+}
+
+function travelCost(source, dest) {
+    c1 = cities.get(source);
+    c2 = cities.get(dest);
+    d = dist(c1.x, c1.y, c2.x, c2.y);
+    if (cityGraph.get(source).find(con => con.destCity == dest).type == "Standard") {
+        var c = C_std;
+    } else {
+        var c = C_prem;
+    }
+
+    tax = 0
+    if (cities.get(city).market != cities.get(connections[i].destCity).market) {
+        tax = marketTax;
+    }
+
+    // 90% distance-based rate + 0-20% random percentage of distance-based rate + flat tax
+    return 0.9 * c * d + 0.2 * c * d * Math.random() + tax;
 }
 
 function getYieldMods(city) {
@@ -103,14 +123,16 @@ function calculateStandardFollowerYield(city, cat, roll) {
     return followerYields;
 }
 
-function completeStandardPost(perfCat, perfRoll, augCat, augRoll) {
-    var perfYields = calculateStandardFollowerYield(currentCity, perfCat, perfRoll)
-    if (augCat != null) {
-        var augYields = calculateStandardFollowerYield(currentCity, augCat, augRoll)
+function completeStandardPost(perfCat, perfRoll) {
+    var perfYields = calculateStandardFollowerYield(currentCity, perfCat, perfRoll);
+    if (activeAug != null) {
+        var augCat = contractTypes[activeAug];
+        var augRoll = currentRolls[activeAug];
+        var augYields = calculateStandardFollowerYield(currentCity, augCat, augRoll);
     }
     
     for (var i = 0; i < followers.length; i++) {
-        followers[i] += perfYields[i] + augYields[i]
+        followers[i] += perfYields[i] + augYields[i];
     }
 
     currentRolls[contractTypes.indexOf(perfCat)] = randRange(1, 10, true);
@@ -118,12 +140,13 @@ function completeStandardPost(perfCat, perfRoll, augCat, augRoll) {
     activeAug = null;
     userCities[currentCity]["posts"] += 1;
 
-    localStorage["userCities"] = JSON.stringify(userCities);
-    localStorage["followers"] = JSON.stringify(followers);
-    localStorage["currentRolls"] = JSON.stringify(currentRolls);
-    localStorage["activeAug"] = activeAug;
+    localStorage["OFGame-userCities"] = JSON.stringify(userCities);
+    localStorage["OFGame-followers"] = JSON.stringify(followers);
+    localStorage["OFGame-currentRolls"] = JSON.stringify(currentRolls);
+    localStorage["OFGame-activeAug"] = activeAug;
     
     generateCityPanel();
+    generateContractPanel();
 }
 
 function completeFusionPost(city) {
@@ -163,9 +186,9 @@ function completeFusionPost(city) {
     userCities[currentCity]["fusionAvailable"] = false;
     fusionView = false;
 
-    localStorage["userCities"] = JSON.stringify(userCities);
-    localStorage["followers"] = JSON.stringify(followers);
-    localStorage["fusionView"] = fusionView
+    localStorage["OFGame-userCities"] = JSON.stringify(userCities);
+    localStorage["OFGame-followers"] = JSON.stringify(followers);
+    localStorage["OFGame-fusionView"] = fusionView
     generateCityPanel();
 }
 

@@ -23,10 +23,10 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                         <ul class="nav nav-pills">
-                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Game</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Options</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Stats</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Glossary</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Acknowledgements</a></li>
                         </ul>
                     </div>
@@ -36,8 +36,25 @@
 
         <div class="row">
             <div id="city-panel" class="col-md-6 col-lg-4 col-xl-3 pt-3 overflow-auto vh-100"></div>
-            <div class="col-md-6 col-lg-8 col-xl-9 vh-100">
-                <div class="container">
+            <div class="col-md-6 col-lg-8 col-xl-9 overflow-auto vh-100">
+                <div class="container mt-5 pt-3 d-inline-flex justify-content-center">
+                    <div class="tabs">
+                        <input type="radio" id="contracts-tab" name="tabs" onchange="gameView()" checked autocomplete="off"/>
+                        <label class="tab" for="contracts-tab">Contracts</label>
+                        <input type="radio" id="map-tab" name="tabs" onchange="gameView()" autocomplete="off"/>
+                        <label class="tab" for="map-tab">Map</label>
+                        <input type="radio" id="events-tab" name="tabs" onchange="gameView()" autocomplete="off" disabled/>
+                        <label class="tab" for="events-tab">Events</label>
+                        <input type="radio" id="store-tab" name="tabs" onchange="gameView()" autocomplete="off" disabled/>
+                        <label class="tab" for="store-tab">Store</label>
+                        <span class="glider"></span>
+                    </div>
+                </div>
+
+
+                <div id="contracts-panel" class="row row-cols-2 mt-2"></div>
+
+                <div id="map-panel" class="container" hidden>
                     <div id="interactive-map" class="interactive-map" style="width: 1799px ; height: 1390px"></div>
                 </div>
             </div>
@@ -54,11 +71,11 @@
     <script>
         var element = document.getElementById("interactive-map")
         var panzoom = Panzoom(element, {
-            startScale: 0.6,
+            startScale: 0.525,
             minScale: 0.4,
             maxScale: 2,
             startX: -500,
-            startY: -340,
+            startY: -600,
             animate: true
         })
         element.parentElement.addEventListener('wheel', panzoom.zoomWithWheel)
@@ -68,10 +85,11 @@
     <script src="js/game.js"></script>
     <script src="js/map.js"></script>
     <script src="js/cityPanel.js"></script>
+    <script src="js/contractPanel.js"></script>
     <script>
         initializeGame();
     </script>
-    <!-- <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
             const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl, {
@@ -79,7 +97,7 @@
                 trigger: "hover click"
             }));
         }, false);
-    </script> -->
+    </script>
 
 </body>
 

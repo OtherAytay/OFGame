@@ -19,7 +19,6 @@ function saveLocal() {
     localStorage["OFGame-perfView"] = perfView;
     localStorage["OFGame-augView"] = augView;
     localStorage["OFGame-fusionView"] = fusionView;
-    localStorage["OFGame-activeAug"] = activeAug;
 }
 
 function loadLocal() {
@@ -31,7 +30,6 @@ function loadLocal() {
         perfView = JSON.parse(localStorage["OFGame-perfView"]);
         augView = JSON.parse(localStorage["OFGame-augView"]);
         fusionView = JSON.parse(localStorage["OFGame-fusionView"]);
-        activeAug = JSON.parse(localStorage["OFGame-activeAug"]);
     } else {
         userDataFlag = false;
         saveLocal();
@@ -83,6 +81,24 @@ function specCoding(specText) {
         return "fusion-SB"
     } else {
         return ""
+    }
+}
+
+function marketCoding(market) {
+    return market.toLowerCase();
+}
+
+function gameView() {
+    console.log("game view")
+    if (document.getElementById("contracts-tab").checked) {
+        document.getElementById("contracts-panel").hidden = false;
+        document.getElementById("map-panel").hidden = true;
+        generateContractPanel();
+    } else if (document.getElementById("map-tab").checked) {
+        document.getElementById("contracts-panel").hidden = true;
+        document.getElementById("map-panel").hidden = false;
+    } else {
+        
     }
 }
 
