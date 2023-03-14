@@ -26,6 +26,10 @@ function randRange(min, max, integer) {
     }
 }
 
+/**
+ * Sums over the short-term follower rolling cycle into one array
+ * @returns sum of followers of each type in the ST cycle
+ */
 function getSTFollowers() {
     stFollowers = [0,0,0,0,0]
     for (var post = 0; post < stFollowersRolling.length; post++) {
@@ -36,9 +40,24 @@ function getSTFollowers() {
     return stFollowers;
 }
 
+/**
+ * Sums over the long-term follower rolling cycle into one array
+ * @returns sum of followers of each type in the LT cycle
+ */
+function getLTFollowers() {
+    ltFollowers = [0,0,0,0,0]
+    for (var post = 0; post < ltFollowersRolling.length; post++) {
+        for (var cat = 0; cat < ltFollowersRolling[0].length; cat++) {
+            ltFollowers[cat] += ltFollowersRolling[post][cat]
+        }
+    }
+    return ltFollowers;
+}
+
 function getTotalFollowers() {
     followers = [0,0,0,0,0]
     stFollowers = getSTFollowers();
+    ltFollowers = getLTFollowers();
     
     for (var i = 0; i < followers.length; i++) {
         followers[i] += stFollowers[i] + ltFollowers[i]
@@ -59,7 +78,8 @@ function saveLocal() {
     localStorage["OFGame-currentCity"] = currentCity;
     localStorage["OFGame-currentRolls"] = JSON.stringify(currentRolls);
     localStorage["OFGame-stFollowersRolling"] = JSON.stringify(stFollowersRolling);
-    localStorage["OFGame-ltFollowers"] = JSON.stringify(ltFollowers);
+    localStorage["OFGame-ltFollowersRolling"] = JSON.stringify(ltFollowersRolling);
+    localStorage["OFGame-money"] = money;
     localStorage["OFGame-perfView"] = perfView;
     localStorage["OFGame-augView"] = augView;
     localStorage["OFGame-fusionView"] = fusionView;
@@ -71,7 +91,8 @@ function loadLocal() {
         currentCity = localStorage["OFGame-currentCity"];
         currentRolls = JSON.parse(localStorage["OFGame-currentRolls"]);
         stFollowersRolling = JSON.parse(localStorage["OFGame-stFollowersRolling"]);
-        ltFollowers = JSON.parse(localStorage["OFGame-ltFollowers"]);
+        ltFollowersRolling = JSON.parse(localStorage["OFGame-ltFollowersRolling"]);
+        money = JSON.parse(localStorage["OFGame-money"]);
         perfView = JSON.parse(localStorage["OFGame-perfView"]);
         augView = JSON.parse(localStorage["OFGame-augView"]);
         fusionView = JSON.parse(localStorage["OFGame-fusionView"]);
@@ -88,7 +109,8 @@ function clearSave() {
     localStorage.removeItem("OFGame-currentCity");
     localStorage.removeItem("OFGame-currentRolls");
     localStorage.removeItem("OFGame-stFollowersRolling");
-    localStorage.removeItem("OFGame-ltFollowers");
+    localStorage.removeItem("OFGame-ltFollowersRolling");
+    localStorage.removeItem("OFGame-money");
     localStorage.removeItem("OFGame-perfView");
     localStorage.removeItem("OFGame-augView");
     localStorage.removeItem("OFGame-fusionView");

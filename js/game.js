@@ -8,8 +8,10 @@ var userDataFlag = true;
 
 // Short-term followers for the last 4 posts - General, Oral, Anal, Sissy, Bondage
 var stFollowersRolling = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]];
-var ltFollowers = [0, 0, 0, 0, 0] // Long-term followers - General, Oral, Anal, Sissy, Bondage
+// Long-term followers on a 4 week cycle, followers pay monthly.
+var ltFollowersRolling = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 
+var money = 0;
 var currentCity = "Paris";
 var currentRolls = [0, 0, 0, 0]; // Oral, Anal, Sissy, Bondage rolls
 var perfView = 0 // 0: Oral, 1: Anal - corresponds to currentRolls idx
@@ -19,8 +21,8 @@ var fusionView = false;
 
 /* Constants */
 const contractTypes = ["Oral", "Anal", "Sissy", "Bondage"]
-const C_prem = 20; // large dotted line cost
-const C_std = 35; // small dotted line cost
+const C_prem = 35; // large dotted line cost
+const C_std = 20; // small dotted line cost
 const marketTax = 100; // Tax paid to transfer regional markets
 const citySpecBonus = 0.25; // 25% yield increase
 const citySpecPenalty = 0.25; // 25% yield decrease
@@ -30,7 +32,7 @@ function initializeGame() {
     generateCities();
     generateConnections();
     generateMapNodes();
-    
+
     if (!userDataFlag) {
         newCity();
     }
@@ -52,7 +54,7 @@ function newCity() {
 function travelCost(source, dest) {
     c1 = cities.get(source);
     c2 = cities.get(dest);
-    d = dist(c1.x, 0.665*c1.y, c2.x, 0.665*c2.y);
+    d = dist(c1.x, 0.665 * c1.y, c2.x, 0.665 * c2.y);
     if (cityGraph.get(source).find(con => con.destCity == dest).type == "Standard") {
         var c = C_std;
     } else {
@@ -99,16 +101,16 @@ function getYieldMods(city) {
     yieldMods[1] += getRegionalMarketModifier(city.market, "Anal", activeAug != null);
     yieldMods[2] += getRegionalMarketModifier(city.market, "Sissy", true);
     yieldMods[3] += getRegionalMarketModifier(city.market, "Bondage", true);
-    
+
     return yieldMods;
 }
 
 function calculateStandardFollowerYield(city, cat, roll) {
     var followerYields = [0, 0, 0, 0, 0]; // General, Oral, Anal, Sissy, Bondage
-    
+
     // calculate base yield
     var yield = (10 + 2 * roll) * getDiminishingReturnModifier(userCities[city].posts);
-    
+
     // apply yield modifiers
     var yieldMods = getYieldMods(cities.get(city));
     if (cat == "Oral") {
@@ -122,8 +124,8 @@ function calculateStandardFollowerYield(city, cat, roll) {
     }
 
     // apply yield decay
-    decay = (30 - 5.6)*Math.max(0, (1 - getSaturationFactor())) + 5.6;
-    yield = Math.floor(Math.max(0, Math.min(yield, decay*Math.log(yield))));
+    decay = (30 - 5.6) * Math.max(0, (1 - getSaturationFactor())) + 5.6;
+    yield = Math.floor(Math.max(0, Math.min(yield, decay * Math.log(yield))));
 
     // distribute yields
     followerYields[0] = Math.floor(yield / 2);
@@ -141,6 +143,7 @@ function calculateStandardFollowerYield(city, cat, roll) {
 }
 
 function completeStandardPost(perfCat, perfRoll) {
+    // Follower Yield & Decay
     var perfYields = calculateStandardFollowerYield(currentCity, perfCat, perfRoll);
     var augYields = [0, 0, 0, 0, 0]
     if (activeAug != null) {
@@ -148,15 +151,18 @@ function completeStandardPost(perfCat, perfRoll) {
         var augRoll = currentRolls[activeAug];
         augYields = calculateStandardFollowerYield(currentCity, augCat, augRoll);
     }
-    
+
     var stFollowers = [0, 0, 0, 0, 0];
+    var ltFollowers = [0, 0, 0, 0, 0];
     for (var i = 0; i < ltFollowers.length; i++) {
         catYield = perfYields[i] + augYields[i];
         stFollowers[i] += Math.floor(catYield / 2);
         ltFollowers[i] += Math.ceil(catYield / 2);
     }
-    stFollowersRolling.unshift(stFollowers);
-    decayFollowers();
+
+    // Money Yield
+    stCycle(stFollowers, perfCat);
+    ltCycle(ltFollowers, augCat);
 
     currentRolls[contractTypes.indexOf(perfCat)] = randRange(1, 10, true);
     currentRolls[contractTypes.indexOf(augCat)] = randRange(1, 10, true);
@@ -165,46 +171,76 @@ function completeStandardPost(perfCat, perfRoll) {
 
     localStorage["OFGame-userCities"] = JSON.stringify(userCities);
     localStorage["OFGame-stFollowersRolling"] = JSON.stringify(stFollowersRolling);
-    localStorage["OFGame-ltFollowers"] = JSON.stringify(ltFollowers);
+    localStorage["OFGame-ltFollowersRolling"] = JSON.stringify(ltFollowersRolling);
+    localStorage["OFGame-money"] = money;
     localStorage["OFGame-currentRolls"] = JSON.stringify(currentRolls);
     localStorage["OFGame-activeAug"] = activeAug;
-    
+
     generateCityPanel();
     generateContractPanel();
 }
 
-function decayFollowers() {
-    // Short term follower decay
-    stFollowersRolling.pop()
+function stCycle(newSTFollowers, perfCat, augCat) {
+    // Cash out category-specific followers
+    stFollowers = getSTFollowers();
+    money += stFollowers[contractTypes.indexOf(perfCat) + 1];
+    if (augCat != null) {
+        money += stFollowers[contractTypes.indexOf(augCat) + 1];
+    }
+
+    // Cash out this week's paying followers
+    payingFollowers = stFollowersRolling.pop()
+    money += 5 * payingFollowers[0];
+
+    // Replace paying followers with new followers
+    stFollowersRolling.unshift(newSTFollowers);
+}
+
+function ltCycle(newFollowers, perfCat, augCat) {
+    // Cash out category-specific followers
+    ltFollowers = getLTFollowers();
+    money += ltFollowers[contractTypes.indexOf(perfCat) + 1];
+    if (augCat != null) {
+        money += ltFollowers[contractTypes.indexOf(augCat) + 1];
+    }
+
+    // Cash out this week's paying followers
+    payingFollowers = ltFollowersRolling.pop()
+    money += 5 * payingFollowers[0];
 
     // Long term follower decay
-    decayFactor = (1 - (0.1 * Math.random()/5));
-    console.log(decayFactor)
-    ltFollowers = ltFollowers.map(f => Math.floor(decayFactor*f));
+    ltFollowers = ltFollowers.map(f => Math.floor((1 - (0.1 * Math.random())) * f));
 
-    // Check that there are 4 posts
-    // Category-specific decay (category not featured in last 4 posts)
+    // Check if there are 4 posts and which categories are featured
     var has4Posts = true;
     var featured = [false, false, false, false];
     for (var post = 0; post < stFollowersRolling.length; post++) {
         var isPost = true;
         for (var cat = 1; cat < stFollowersRolling[0].length; cat++) {
             if (post[cat] > 0) {
-                featured[cat-1] = true;
+                featured[cat - 1] = true;
                 isPost = true;
             }
         }
         has4Posts = isPost;
     }
-    
+
+    // Category-specific decay (category not featured in last 4 posts)
     if (has4Posts) {
-        for (var cat = 0; cat < featured.length; cat++) {
-            if (featured[cat]) {
-                ltFollowers[cat+1] = Math.floor(ltFollowers[cat+1] * 0.75)
+        for (var post = 0; post < ltFollowersRolling.length; post++) {
+            for (var cat = 0; cat < featured.length; cat++) {
+                if (featured[cat]) {
+                    ltFollowers[post][cat + 1] = Math.floor(ltFollowers[post][cat + 1] * 0.75)
+                }
             }
         }
     }
-    
+
+    // Roll new followers into the cycle
+    for (var i = 0; i < newFollowers.length; i++) {
+        payingFollowers[i] += newFollowers[i];
+    }
+    ltFollowersRolling.unshift(payingFollowers);
 }
 
 function completeFusionPost(city) {

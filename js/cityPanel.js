@@ -164,7 +164,7 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
                                 React.createElement(
                                     'li',
                                     {class: "list-group-item"},
-                                    "Saturation: " + Math.round((getSaturationFactor() * 100 + Number.EPSILON) * 100) / 100 + "%"
+                                    "Saturation Index: " + Math.round((getSaturationFactor() * 100 + Number.EPSILON) * 100) / 100 + "%"
                                 )
                             ),
                             React.createElement(
@@ -352,32 +352,40 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
                     { class: "accordion-item" },
                     React.createElement(
                         'div',
-                        { class: "accordion-header", id: "contracts" },
+                        { class: "accordion-header", id: "finances" },
                         React.createElement(
                             'button',
                             {
                                 class: "accordion-button collapsed",
                                 type: "button",
                                 'data-bs-toggle': "collapse",
-                                'data-bs-target': "#collapse-contracts",
+                                'data-bs-target': "#collapse-finances",
                                 'aria-expanded': "false",
-                                'aria-controls': "collapse-contracts",
+                                'aria-controls': "collapse-finances",
                             },
-                            "Contracts"
+                            "Finances"
                         )
                     ),
                     React.createElement(
                         'div',
                         {
                             class: "accordion-collapse collapse",
-                            id: "collapse-contracts",
-                            'aria-labelledby': "contracts",
+                            id: "collapse-finances",
+                            'aria-labelledby': "finances",
                             'data-bs-parent': "#cityPanelOptions"
                         },
                         React.createElement(
                             'div',
                             { class: "accordion-body text-center" },
-                        
+                            React.createElement(
+                                'ul',
+                                {class: "list-group d-inline-flex justify-content-center"},
+                                React.createElement(
+                                    'li',
+                                    {class: "list-group-item"},
+                                    "Money: $" + money
+                                )
+                            )
                         ),
                     )
                 ),
@@ -388,7 +396,7 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
                         'div',
                         {
                             class: "accordion-header",
-                            id: "market-characteristics"
+                            id: "items"
                         },
                         React.createElement(
                             "button",
@@ -396,25 +404,25 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
                                 type: "button",
                                 class: "accordion-button collapsed",
                                 'data-bs-toggle': "collapse",
-                                'data-bs-target': "#collapse-market-characteristics",
+                                'data-bs-target': "#collapse-items",
                                 'aria-expanded': "false",
-                                'aria-controls': "collapse-market-characteristics"
+                                'aria-controls': "collapse-items"
                             },
-                            "Market Characteristics"
+                            "Items"
                         )
                     ),
                     React.createElement(
                         'div',
                         {
-                            id: "collapse-market-characteristics",
+                            id: "collapse-items",
                             class: "accordion-collapse collapse",
-                            'aria-labelledby': "market-characteristics",
+                            'aria-labelledby': "items",
                             'data-bs-parent': "#cityPanelOptions"
                         },
                         React.createElement(
                             'div',
                             { class: "accordion-body text-center" },
-                            getRegionalMarketCharacteristics(market)
+                            
                         )
                     )
                 )
