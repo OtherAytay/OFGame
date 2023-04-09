@@ -30,7 +30,7 @@ var upgradeLimits = initUpgradeLimits;
 var ltRatio = 0.5;
 var luck = 0.5; // on scale from 0 to 1.
 var saturationCap = 1000;
-var minRoll = 1;
+var minRoll = 1; 
 
 /* Constants */
 //const version = 1.0;
