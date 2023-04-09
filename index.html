@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OnlyFans Escort Sim</title>
+    <link href="scss/custom.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container-fluid overflow-scroll">
+        <div class="row">
+            <nav class="navbar navbar-expand-md bg-body-tertiary fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-fusion-OS" href="#">OnlyFans Escort Sim</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a class="nav-link active" aria-current="page"
+                                    href="index.html">Game</a></li>
+                            <li class="nav-item"><a class="nav-link" href="options.html">Options</a></li>
+                            <li class="nav-item"><a class="nav-link" href="progress.html">Progress</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Acknowledgements</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="row vh-100">
+            <div id="city-panel" class="col-md-6 col-lg-4 col-xl-3 pt-3 overflow-auto h-100"></div>
+            <div class="col-md-6 col-lg-8 col-xl-9 overflow-auto h-100">
+                <div class="container mt-md-5 mb-2 pt-md-3 d-inline-flex justify-content-center">
+                    <div class="tabs shadow">
+                        <input type="radio" id="contracts-tab" name="tabs" onchange="gameView()" checked
+                            autocomplete="off" />
+                        <label class="tab" for="contracts-tab">Contracts</label>
+                        <input type="radio" id="map-tab" name="tabs" onchange="gameView()" autocomplete="off" />
+                        <label class="tab" for="map-tab">Map</label>
+                        <input type="radio" id="store-tab" name="tabs" onchange="gameView()" autocomplete="off" />
+                        <label class="tab" for="store-tab">Store</label>
+                        <span class="glider"></span>
+                    </div>
+                </div>
+
+
+                <div id="contracts-panel" class="row row-cols-2 mt-2"></div>
+
+                <div id="map-panel" class="container" hidden>
+                    <div id="interactive-map" class="interactive-map" style="width: 1799px ; height: 1390px"></div>
+                </div>
+
+                <div id="store-panel" class="row row-cols-3 my-2" hidden></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Modal -->
+    <div class="modal fade" data-bs-backdrop="static" id="event" tabindex="-1" aria-labelledby=""></div>
+
+    <!-- New Save Modal -->
+    <div class="modal fade" data-bs-backdrop="static" id="newSave" tabindex="-1" aria-labelledby="newSaveLabel"
+        aria-hidden="true">
+        <div id="origin-story" class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-3 fw-bold text-center" id="newSaveLabel">Build your OnlyFans Origin Story
+                    </h1>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+
+                <div class="modal-body text-center">
+                    <h2 class="fs-4 fw-bold">Import Existing Save</h2>
+                    <div class="d-flex justify-content-center">
+                        <div class="input-group w-75">
+                            <label class="input-group-text text-bg-primary" for="import-save">Import</label>
+                            <input type="file" class="form-control border-primary" id="import-save">
+                        </div>
+                    </div>
+                    
+
+                    <!-- Home City + Region -->
+                    <h2 class="fs-4 fw-bold">Home City</h2>
+                    <p>Choose the city that you will start your career in. Each city endows you with important expertise
+                        during your early career, granting you a permanent bonus relating to the city's regional market
+                        characteristics.</p>
+                    <div class="container pb-4 overflow-x-scroll overflow-y-hidden d-flex">
+                        <!-- Paris -->
+                        <div class="card col-lg-3 col-sm-6 col-12 me-3 text-center border-french">
+                            <img class="card-img-top" src="images/paris.jpeg">
+                            <h3 class="card-header card-title fs-5 fw-bold">Paris</h3>
+                            <div class="card-body">
+                                <h4 class="fs-5 text-french">French Regional Market</h4>
+                                <p class="fs-6 mb-0">Oral / Anal contract yields increased by 5%.</p>
+                            </div>
+                            <div class="card-footer">
+                                <input type="radio" name="city-select" class="btn-check" id="paris" value="Paris"
+                                    autocomplete="off">
+                                <label class="btn btn-outline-french" for="paris">Select</label><br>
+                            </div>
+                        </div>
+
+                        <!-- Madrid -->
+                        <div class="card col-lg-3 col-sm-6 col-12 mx-3 text-center border-iberian">
+                            <img class="card-img-top" src="images/madrid.jpg">
+                            <h3 class="card-header card-title fs-5 fw-bold">Madrid</h3>
+                            <div class="card-body">
+                                <h4 class="fs-5 text-iberian">Iberian Regional Market</h4>
+                                <p class="fs-6 mb-0">Sissy contract yields are increased by 10%.</p>
+                            </div>
+                            <div class="card-footer">
+                                <input type="radio" name="city-select" class="btn-check" id="madrid" value="Madrid"
+                                    autocomplete="off">
+                                <label class="btn btn-outline-iberian" for="madrid">Select</label><br>
+                            </div>
+                        </div>
+
+                        <!-- London -->
+                        <div class="card col-lg-3 col-sm-6 col-12 mx-3 text-center border-anglo">
+                            <img class="card-img-top" src="images/london.jpg">
+                            <h3 class="card-header card-title fs-5 fw-bold">London</h3>
+                            <div class="card-body">
+                                <h4 class="fs-5 text-anglo">Anglo Regional Market</h4>
+                                <p class="fs-6 mb-0">Oral contract yields are increased by 10%.</p>
+                            </div>
+                            <div class="card-footer">
+                                <input type="radio" name="city-select" class="btn-check" id="london" value="London"
+                                    autocomplete="off">
+                                <label class="btn btn-outline-anglo" for="london">Select</label><br>
+                            </div>
+                        </div>
+
+                        <!-- Berlin -->
+                        <div class="card col-lg-3 col-sm-6 col-12 mx-3 text-center border-germanic">
+                            <img class="card-img-top" src="images/berlin.jpg">
+                            <h3 class="card-header card-title fs-5 fw-bold">Berlin</h3>
+                            <div class="card-body">
+                                <h4 class="fs-5 text-germanic">Germanic Regional Market</h4>
+                                <p class="fs-6 mb-0">Anal contract yields are increased by 10%.</p>
+                            </div>
+                            <div class="card-footer">
+                                <input type="radio" name="city-select" class="btn-check" id="berlin" value="Berlin"
+                                    autocomplete="off">
+                                <label class="btn btn-outline-germanic" for="berlin">Select</label><br>
+                            </div>
+                        </div>
+
+                        <!-- Rome -->
+                        <div class="card col-lg-3 col-sm-6 col-12 mx-3 text-center border-greco-roman">
+                            <img class="card-img-top" src="images/rome.jpg">
+                            <h3 class="card-header card-title fs-5 fw-bold">Rome</h3>
+                            <div class="card-body">
+                                <h4 class="fs-5 text-greco-roman">Greco-Roman Regional Market</h4>
+                                <p class="fs-6 mb-0">Bondage contract yields are increased by 10%.</p>
+                            </div>
+                            <div class="card-footer">
+                                <input type="radio" name="city-select" class="btn-check" id="rome" value="Rome"
+                                    autocomplete="off">
+                                <label class="btn btn-outline-greco-roman" for="rome">Select</label><br>
+                            </div>
+                        </div>
+
+                        <!-- Budapest -->
+                        <div class="card col-lg-3 col-sm-6 col-12 mx-3 text-center border-eastern">
+                            <img class="card-img-top" src="images/budapest.jpg">
+                            <h3 class="card-header card-title fs-5 fw-bold">Budapest</h3>
+                            <div class="card-body">
+                                <h4 class="fs-5 text-eastern">Eastern Regional Market</h4>
+                                <p class="fs-6 mb-0">Sissy / Bondage yields increased by 5%.</p>
+                            </div>
+                            <div class="card-footer">
+                                <input type="radio" name="city-select" class="btn-check" id="budapest" value="Budapest"
+                                    autocomplete="off">
+                                <label class="btn btn-outline-eastern" for="budapest">Select</label><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <!-- Upbringing -->
+                    <h2 class="fs-4 mt-2 fw-bold">Upbringing</h2>
+                    <p>Describe the conditions of your upbringing prior to starting your career. Were you able to
+                        accumulate some startup capital? Did things typically just fall into place?</p>
+                    <div class="container overflow-x-scroll">
+                        <ul class="list-group list-group-horizontal w-100 px-4">
+                            <a class="list-group-item list-group-item-action d-flex" data-bs-toggle="popover"
+                                data-bs-title="Luck"
+                                data-bs-content="Events occur randomly throughout the game, luck determines the ratio of positive to negative events. This value ranges from only negative events to only positive events. Luck changes throughout the game."
+                                data-bs-placement="top">
+                                <h5 class="mx-auto my-auto">Luck</h5>
+                            </a>
+                            <li class="list-group-item flex-grow-1 d-flex justify-content-center">
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="luck-radio" id="luck-unfortunate"
+                                        value="Unfortunate" autocomplete="off" onchange="">
+                                    <label class="btn btn-outline-primary" for="luck-unfortunate">Unfortunate</label>
+
+                                    <input type="radio" class="btn-check" name="luck-radio" id="luck-unlucky"
+                                        value="Unlucky" autocomplete="off" onchange="">
+                                    <label class="btn btn-outline-primary" for="luck-unlucky">Unlucky</label>
+
+                                    <input type="radio" class="btn-check" name="luck-radio" id="luck-normal"
+                                        value="Normal" autocomplete="off" onchange="" checked>
+                                    <label class="btn btn-outline-primary" for="luck-normal">Normal</label>
+
+                                    <input type="radio" class="btn-check" name="luck-radio" id="luck-lucky"
+                                        value="Lucky" autocomplete="off" onchange="">
+                                    <label class="btn btn-outline-primary" for="luck-lucky">Lucky</label>
+
+                                    <input type="radio" class="btn-check" name="luck-radio" id="luck-fortunate"
+                                        value="Fortunate" autocomplete="off" onchange="">
+                                    <label class="btn btn-outline-primary" for="luck-fortunate">Fortunate</label>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="list-group list-group-horizontal w-100 px-4 mt-2">
+                            <a class="list-group-item list-group-item-action d-flex" data-bs-toggle="popover"
+                                data-bs-title="Initial Wealth"
+                                data-bs-content="The sum of money you have saved as startup capital to start your career."
+                                data-bs-placement="top">
+                                <h5 class="mx-auto my-auto">Startup Capital</h5>
+                            </a>
+                            <li class="list-group-item flex-grow-1 d-flex justify-content-center">
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="wealth-radio" id="wealth-0" value="0"
+                                        autocomplete="off" onchange="">
+                                    <label class="btn btn-outline-primary" for="wealth-0">$0</label>
+
+                                    <input type="radio" class="btn-check" name="wealth-radio" id="wealth-500"
+                                        value="500" autocomplete="off" onchange="">
+                                    <label class="btn btn-outline-primary" for="wealth-500">$500</label>
+
+                                    <input type="radio" class="btn-check" name="wealth-radio" id="wealth-1000"
+                                        value="1000" autocomplete="off" onchange="" checked>
+                                    <label class="btn btn-outline-primary" for="wealth-1000">$1000</label>
+
+                                    <input type="radio" class="btn-check" name="wealth-radio" id="wealth-1500"
+                                        value="1500" autocomplete="off" onchange="">
+                                    <label class="btn btn-outline-primary" for="wealth-1500">$1500</label>
+
+                                    <input type="radio" class="btn-check" name="wealth-radio" id="wealth-2000"
+                                        value="2000" autocomplete="off" onchange="">
+                                    <label class="btn btn-outline-primary" for="wealth-2000">$2000</label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <hr>
+                    <!-- Forces at Play -->
+                    <h2 class="fs-4 mt-2 fw-bold">Forces at Play</h2>
+                    <p>Elaborate on unique personal and market conditions that will influence the development of your
+                        career. You can enable as many as you would like.</p>
+
+                    <div class="container pb-4 overflow-x-scroll overflow-y-hidden d-flex">
+                        <!-- Due Diligence -->
+                        <div class="card col-lg-3 col-sm-6 col-12 me-3 text-center border-primary">
+                            <h3 class="card-header card-title fs-5 fw-bold">Due Diligence</h3>
+                            <div class="card-body">
+                                <p class="fs-6 mb-0">All contract durations are doubled.</p>
+                            </div>
+                            <div class="card-footer">
+                                <input type="checkbox" name="fop-select" class="btn-check" id="diligence"
+                                    value="Due Diligence" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="diligence">Select</label><br>
+                            </div>
+                        </div>
+
+                        <!-- Economic Recession -->
+                        <div class="card col-lg-3 col-sm-6 col-12 mx-3 text-center border-primary">
+                            <h3 class="card-header card-title fs-5 fw-bold">Economic Recession</h3>
+                            <div class="card-body">
+                                <p class="fs-6 mb-0">All money gains are halved.</p>
+                            </div>
+                            <div class="card-footer">
+                                <input type="checkbox" name="fop-select" class="btn-check" id="recession"
+                                    value="Economic Recession" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="recession">Select</label><br>
+                            </div>
+                        </div>
+
+                        <!-- Intermarket Tariffs -->
+                        <div class="card col-lg-3 col-sm-6 col-12 mx-3 text-center border-primary">
+                            <h3 class="card-header card-title fs-5 fw-bold">Intermarket Tariffs</h3>
+                            <div class="card-body">
+                                <p class="fs-6 mb-0">Market transfer tax is greatly increased.</p>
+                            </div>
+                            <div class="card-footer">
+                                <input type="checkbox" name="fop-select" class="btn-check" id="tariffs"
+                                    value="Intermarket Tariffs" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="tariffs">Select</label><br>
+                            </div>
+                        </div>
+
+                        <!-- Attention Deficit -->
+                        <div class="card col-lg-3 col-sm-6 col-12 mx-3 text-center border-primary">
+                            <h3 class="card-header card-title fs-5 fw-bold">Attention Deficit</h3>
+                            <div class="card-body">
+                                <p class="fs-6 mb-0">Only 25% of new followers are long-term (down from 50%).</p>
+                            </div>
+                            <div class="card-footer">
+                                <input type="checkbox" name="fop-select" class="btn-check" id="deficit"
+                                    value="Attention Deficit" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="deficit">Select</label><br>
+                            </div>
+                        </div>
+
+                        <!-- Extensive Competition -->
+                        <div class="card col-lg-3 col-sm-6 col-12 mx-3 text-center border-primary">
+                            <h3 class="card-header card-title fs-5 fw-bold">Extensive Competition</h3>
+                            <div class="card-body">
+                                <p class="fs-6 mb-0">Partnerships are offered half as often.</p>
+                            </div>
+                            <div class="card-footer">
+                                <input type="checkbox" name="fop-select" class="btn-check" id="competition"
+                                    value="Extensive Competition" autocomplete="off" disabled>
+                                <label class="btn btn-outline-primary" for="competition">Coming Soon</label><br>
+                            </div>
+                        </div>
+
+                        <!-- Strong relations -->
+                        <div class="card col-lg-3 col-sm-6 col-12 mx-3 text-center border-primary">
+                            <h3 class="card-header card-title fs-5 fw-bold">Strong relations</h3>
+                            <div class="card-body">
+                                <p class="fs-6 mb-0">Partnerships last twice as long.</p>
+                            </div>
+                            <div class="card-footer">
+                                <input type="checkbox" name="fop-select" class="btn-check" id="relations"
+                                    value="Strong Relations" autocomplete="off" disabled>
+                                <label class="btn btn-outline-primary" for="relations">Coming Soon</label><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                        <button type="button" class="btn btn-primary" onclick="startNewSave()">Start</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" crossorigin></script>
+        <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js" crossorigin></script>
+        <script src="https://cdn.jsdelivr.net/npm/react-bootstrap@next/dist/react-bootstrap.min.js"
+            crossorigin></script>
+        <script>var Alert = ReactBootstrap.Alert;</script>
+        <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+        <!-- https://github.com/timmywil/panzoom -->
+        <script>
+            var element = document.getElementById("interactive-map")
+            var panzoom = Panzoom(element, {
+                startScale: 0.525,
+                minScale: 0.4,
+                maxScale: 2,
+                startX: -500,
+                startY: -600,
+                animate: true
+            })
+            element.parentElement.addEventListener('wheel', panzoom.zoomWithWheel)
+        </script>
+        
+        <script src="js/info.js"></script>
+        <script src="js/eventModal.js"></script>
+        <script src="js/game.js"></script>
+        <script src="js/utility.js"></script>
+        <script src="js/map.js"></script>
+        <script src="js/cityPanel.js"></script>
+        <script src="js/contractPanel.js"></script>
+        <script src="js/storePanel.js"></script>
+
+        <script>
+            initializeGame(); //newSave();
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Load popovers
+                const mapPopoverTriggerList = document.querySelectorAll('#interactive-map>[data-bs-toggle="popover"]');
+                const mapPopoverList = [...mapPopoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl, {
+                    container: '#interactive-map',
+                    trigger: "hover click"
+                }));
+            }, false);
+        </script>
+
+</body>
+
+</html>

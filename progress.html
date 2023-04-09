@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OnlyFans Escort Sim</title>
+    <link href="scss/custom.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container-fluid overflow-hidden">
+        <div class="row">
+            <nav class="navbar navbar-expand-md bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-fusion-OS" href="#">OnlyFans Escort Sim</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Game</a></li>
+                            <li class="nav-item"><a class="nav-link" href="options.html">Options</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page"
+                                    href="progress.html">Progress</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Acknowledgements</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="row mt-2 overflow-auto">
+            <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12 my-2">
+                <div id="stats" class="card d-inline-flex justify-content-center">
+                    <h2 class="card-header text-center">Stats</h2>
+                    <div class="card-body text-center">
+                        <div class="row text-center d-inline-flex">
+                            <h4 class="fw-bold">Contracts</h4>
+                            <table class="table table-sm table-bordered border-primary mb-0">
+                                <thead>
+                                    <tr>
+                                        <th colspan="7">Contracts</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-oral">Oral</th>
+                                        <th class="text-anal">Anal</th>
+                                        <th class="text-sissy">Sissy</th>
+                                        <th class="text-bondage">Bondage</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    <tr>
+                                        <td id="contracts-oral" class="text-oral">0</td>
+                                        <td id="contracts-anal" class="text-anal">0</td>
+                                        <td id="contracts-sissy" class="text-sissy">0</td>
+                                        <td id="contracts-bondage" class="text-bondage">0</td>
+                                        <td id="contracts-total">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <table class="table table-sm table-bordered border-primary mt-2 mb-0">
+                            <tr>
+                                <th>Posts</th>
+                                <td id="posts" class="w-25">0</td>
+                            </tr>
+                            <tr>
+                                <th>Cities Visited</th>
+                                <td id="cities-visited" class="w-25">0</td>
+                            </tr>
+                            <tr>
+                                <th>Average Roll</th>
+                                <td id="average-roll" class="w-25">0</td>
+                            </tr>
+                        </table>
+
+                        <div class="row text-center d-inline-flex mt-2 mx-auto ">
+                            <h4 class="fw-bold">Followers</h4>
+                            <table class="table table-sm table-bordered border-primary mt-2 mb-0">
+                                <thead>
+                                    <tr>
+                                        <th colspan="7">Followers</th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th>General</th>
+                                        <th class="text-oral">Oral</th>
+                                        <th class="text-anal">Anal</th>
+                                        <th class="text-sissy">Sissy</th>
+                                        <th class="text-bondage">Bondage</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle">
+                                    <tr>
+                                        <td>Lifetime</td>
+                                        <td id="lifetime-general">0</td>
+                                        <td id="lifetime-oral" class="text-oral">0</td>
+                                        <td id="lifetime-anal" class="text-anal">0</td>
+                                        <td id="lifetime-sissy" class="text-sissy">0</td>
+                                        <td id="lifetime-bondage" class="text-bondage">0</td>
+                                        <td id="lifetime-total">0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Max</td>
+                                        <td id="max-general">0</td>
+                                        <td id="max-oral" class="text-oral">0</td>
+                                        <td id="max-anal" class="text-anal">0</td>
+                                        <td id="max-sissy" class="text-sissy">0</td>
+                                        <td id="max-bondage" class="text-bondage">0</td>
+                                        <td id="max-total">0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-sm table-bordered border-primary mt-2 mb-0">
+                                <tr>
+                                    <th>Max Yield Modifier</th>
+                                    <td id="max-yield-modifier" class="w-25">0</td>
+                                </tr>
+                                <tr>
+                                    <th>Max Instance of Follower Gain</th>
+                                    <td id="max-atomic-follower-gain" class="w-25">0</td>
+                                </tr>
+                                <tr>
+                                    <th>Followers Gained Through Events</th>
+                                    <td id="event-follower-gain" class="w-25">0</td>
+                                </tr>
+                                <tr>
+                                    <th>Followers Lost to Events</th>
+                                    <td id="event-follower-loss" class="w-25">0</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <h4 class="fw-bold mt-2">Finances</h4>
+                        <table class="table table-sm table-bordered border-primary mt-2 mb-0">
+                            <tr>
+                                <th>Lifetime Money</th>
+                                <td id="lifetime-money" class="w-25">0</td>
+                            </tr>
+                            <tr>
+                                <th>Max Money-on-Hand</th>
+                                <td id="max-money" class="w-25">0</td>
+                            </tr>
+                            <tr>
+                                <th>Max Instance of Money Gain</th>
+                                <td id="max-atomic-money-gain" class="w-25">0</td>
+                            </tr>
+                            <tr>
+                                <th>Money Gained through Events</th>
+                                <td id="event-money-gain" class="w-25">0</td>
+                            </tr>
+                            <tr>
+                                <th>Money Lost to Events</th>
+                                <td id="event-money-loss" class="w-25">0</td>
+                            </tr>
+                            <tr>
+                                <th>Money Spent on Upgrades</th>
+                                <td id="spent-on-upgrades" class="w-25">0</td>
+                            </tr>
+                            <tr>
+                                <th>Money Spent on Items</th>
+                                <td id="spent-on-items" class="w-25">0</td>
+                            </tr>
+                            <tr>
+                                <th>Money Spent on Travel</th>
+                                <td id="spent-on-travel" class="w-25">0</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script>
+    <script>var Alert = ReactBootstrap.Alert;</script>
+    <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+        integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
+        async></script>
+    <!-- https://github.com/timmywil/panzoom -->
+    <script src="js/game.js"></script>
+    <script src="js/utility.js"></script>
+    <script src="js/info.js"></script>
+    <script src="js/progress.js"></script>
+    <script>loadStats();</script>
+    <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl,
+            { container: "body", trigger: "click hover" }))
+    </script>
+</body>
+
+</html>
