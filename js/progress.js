@@ -339,7 +339,7 @@ followerMS = [
     {
         name: "On the Map",
         desc: "Have 100 total followers at one time",
-        type: "Total",
+        type: "total",
         amount: 100,
         stat: "maxFollowers",
         points: 10,
@@ -348,7 +348,7 @@ followerMS = [
     {
         name: "Getting Popular",
         desc: "Have 250 total followers at one time",
-        type: "Total",
+        type: "total",
         amount: 250,
         stat: "maxFollowers",
         points: 10,
@@ -357,7 +357,7 @@ followerMS = [
     {
         name: "Community of my Own",
         desc: "Have 500 total followers at one time",
-        type: "Total",
+        type: "total",
         amount: 500,
         stat: "maxFollowers",
         points: 20,
@@ -366,7 +366,7 @@ followerMS = [
     {
         name: "Cult Following",
         desc: "Have 1000 total followers at one time",
-        type: "Total",
+        type: "total",
         amount: 1000,
         stat: "maxFollowers",
         points: 30,
