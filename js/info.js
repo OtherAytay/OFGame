@@ -284,7 +284,7 @@ function createCity(name, size, special, market, x, y) {
 
     cities.set(name, { size: size, special: special, market: market, x: x, y: y });
     if (!userDataFlag) {
-        userCities[name] = {...initUserCity};
+        userCities[name] = {...initUserCity, fusionAvailable: fusionAvailable};
     }
 }
 
