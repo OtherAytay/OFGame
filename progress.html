@@ -35,11 +35,14 @@
             </nav>
         </div>
 
-        <div class="row mt-2 overflow-auto">
-            <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12 my-2">
-                <div id="stats" class="card d-inline-flex justify-content-center">
-                    <h2 class="card-header text-center">Stats</h2>
+        <div class="row vh-100">
+            <div id="stats" class="col-md-6 col-lg-4 pt-4 overflow-auto h-100">
+                <div class="card border-primary overflow-auto justify-content-center">
+                    <h2 class="card-header text-center text-bg-primary">Stats</h2>
                     <div class="card-body text-center">
+                        <ul class="list-group d-inline-flex mb-2">
+                            <li class="list-group-item border-success fs-5">Milestone Points <span id="ms-points" class="badge bg-success">0</span></li>
+                        </ul>
                         <div class="row text-center d-inline-flex">
                             <h4 class="fw-bold">Contracts</h4>
                             <table class="table table-sm table-bordered border-primary mb-0">
@@ -95,7 +98,6 @@
                                         <th class="text-anal">Anal</th>
                                         <th class="text-sissy">Sissy</th>
                                         <th class="text-bondage">Bondage</th>
-                                        <th>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody class="align-middle">
@@ -106,7 +108,6 @@
                                         <td id="lifetime-anal" class="text-anal">0</td>
                                         <td id="lifetime-sissy" class="text-sissy">0</td>
                                         <td id="lifetime-bondage" class="text-bondage">0</td>
-                                        <td id="lifetime-total">0</td>
                                     </tr>
                                     <tr>
                                         <td>Max</td>
@@ -115,11 +116,18 @@
                                         <td id="max-anal" class="text-anal">0</td>
                                         <td id="max-sissy" class="text-sissy">0</td>
                                         <td id="max-bondage" class="text-bondage">0</td>
-                                        <td id="max-total">0</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <table class="table table-sm table-bordered border-primary mt-2 mb-0">
+                                <tr>
+                                    <th>Total Lifetime Followers</th>
+                                    <td id="lifetime-total" class="w-25">0</td>
+                                </tr>
+                                <tr>
+                                    <th>Max Total Followers</th>
+                                    <td id="max-total" class="w-25">0</td>
+                                </tr>
                                 <tr>
                                     <th>Max Yield Modifier</th>
                                     <td id="max-yield-modifier" class="w-25">0</td>
@@ -176,9 +184,34 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-6 col-lg-8 overflow-auto h-100">
+                <div class="container mt-2 d-inline-flex justify-content-center">
+                    <div class="tabs shadow">
+                        <input type="radio" id="tab1" name="tabs" value="earned" onchange="gameView()" checked autocomplete="off" />
+                        <label class="tab" for="tab1">Earned</label>
+                        <input type="radio" id="tab2" name="tabs" value="contracts" onchange="gameView()" autocomplete="off" />
+                        <label class="tab" for="tab2">Contracts</label>
+                        <input type="radio" id="tab3" name="tabs" value="followers" onchange="gameView()" autocomplete="off" />
+                        <label class="tab" for="tab3">Followers</label>
+                        <input type="radio" id="tab4" name="tabs" value="finances" onchange="gameView()" autocomplete="off" />
+                        <label class="tab" for="tab4">Finances</label>
+                        <span class="glider"></span>
+                    </div>
+                </div>
+
+                <div id="earned" class="row row-cols-2 mt-2"></div>
+
+                <div id="contracts" class="row row-cols-2 mt-2" hidden></div>
+
+                <div id="followers" class="row row-cols-2 mt-2" hidden></div>
+
+                <div id="finances" class="row row-cols-3 my-2" hidden></div>
+            </div>
         </div>
     </div>
-    </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" crossorigin></script>
     <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js" crossorigin></script>
@@ -193,7 +226,7 @@
     <script src="js/utility.js"></script>
     <script src="js/info.js"></script>
     <script src="js/progress.js"></script>
-    <script>loadStats();</script>
+    <script>loadStats(); generateMilestones();</script>
     <script>
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl,

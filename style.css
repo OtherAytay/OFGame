@@ -365,6 +365,11 @@
   --bs-btn-disabled-border-color: #000000;
 }
 
+#navbarSupportedContent {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
 
 /* Test */
 
@@ -430,16 +435,24 @@ input[type="radio"]:checked+label>.notification {
   color: #fff;
 }
 
-input[id="contracts-tab"]:checked~.glider {
+input[id="tab1"]:checked~.glider {
   transform: translateX(0);
 }
 
-input[id="map-tab"]:checked~.glider {
+input[id="tab2"]:checked~.glider {
   transform: translateX(100%);
 }
 
-input[id="store-tab"]:checked~.glider {
+input[id="tab3"]:checked~.glider {
   transform: translateX(200%);
+}
+
+input[id="tab4"]:checked~.glider {
+  transform: translateX(300%);
+}
+
+input[id="tab5"]:checked~.glider {
+  transform: translateX(400%);
 }
 
 .glider {

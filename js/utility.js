@@ -1,18 +1,11 @@
 /* Interface Management */
 function gameView() {
-    if (document.getElementById("contracts-tab").checked) {
-        document.getElementById("contracts-panel").hidden = false;
-        document.getElementById("map-panel").hidden = true;
-        document.getElementById("store-panel").hidden = true;
-        generateContractPanel();
-    } else if (document.getElementById("map-tab").checked) {
-        document.getElementById("contracts-panel").hidden = true;
-        document.getElementById("map-panel").hidden = false;
-        document.getElementById("store-panel").hidden = true;
-    } else if (document.getElementById("store-tab").checked) {
-        document.getElementById("contracts-panel").hidden = true;
-        document.getElementById("map-panel").hidden = true;
-        document.getElementById("store-panel").hidden = false;
+    for (const radio of document.getElementsByName("tabs")) {
+        if (radio.checked) {
+            document.getElementById(radio.value).hidden = false;
+        } else {
+            document.getElementById(radio.value).hidden = true;
+        }
     }
 }
 
@@ -119,7 +112,14 @@ const initData = {
     "OFGame-activeEvent": "",
     "OFGame-eventChance": 0,
     "OFGame-minRoll": 1,
-    "OFGame-playerStats": null
+    "OFGame-playerStats": null,
+    "OFGame-earnedMS": [],
+    "OFGame-eventsUnlocked": false,
+    "OFGame-marketsUnlocked": false,
+    "OFGame-upgradesUnlocked": false,
+    "OFGame-itemsUnlocked": false,
+    "OFGame-playerName": "",
+    "OFGame-activeTitle": ""
 }
 
 function assimilateSave() {
@@ -207,6 +207,14 @@ function saveLocal() {
     localStorage["OFGame-eventChance"] = eventChance;
     localStorage["OFGame-minRoll"] = minRoll;
     localStorage["OFGame-playerStats"] = JSON.stringify(playerStats);
+    localStorage["OFGame-earnedMS"] = JSON.stringify(earnedMS);
+    localStorage["OFGame-eventsUnlocked"] = eventsUnlocked;
+    localStorage["OFGame-marketsUnlocked"] = marketsUnlocked;
+    localStorage["OFGame-upgradesUnlocked"] = upgradesUnlocked;
+    localStorage["OFGame-itemsUnlocked"] = itemsUnlocked;
+    localStorage["OFGame-playerName"] = playerName;
+    localStorage["OFGame-activeTitle"] = activeTitle;
+    localStorage["OFGame-earnedTitles"] = JSON.stringify(earnedTitles);
 }
 
 function loadLocal() {
@@ -237,6 +245,14 @@ function loadLocal() {
             eventChance = JSON.parse(localStorage["OFGame-eventChance"]);
             minRoll = JSON.parse(localStorage["OFGame-minRoll"]);
             playerStats = JSON.parse(localStorage["OFGame-playerStats"]);
+            earnedMS = JSON.parse(localStorage["OFGame-earnedMS"]);
+            eventsUnlocked = JSON.parse(localStorage["OFGame-eventsUnlocked"]);
+            marketsUnlocked = JSON.parse(localStorage["OFGame-marketsUnlocked"]);
+            upgradesUnlocked = JSON.parse(localStorage["OFGame-upgradesUnlocked"]);
+            itemsUnlocked = JSON.parse(localStorage["OFGame-itemsUnlocked"]);
+            playerName = localStorage["OFGame-playerName"]
+            activeTitle = localStorage["OFGame-activeTitle"]
+            earnedTitles = JSON.parse(localStorage["OFGame-earnedTitles"])
         } catch (error) { }
 
     } else {

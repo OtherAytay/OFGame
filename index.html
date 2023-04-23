@@ -36,23 +36,23 @@
         </div>
 
         <div class="row vh-100">
-            <div id="city-panel" class="col-md-6 col-lg-4 col-xl-3 pt-3 overflow-auto h-100"></div>
+            <div id="city-panel" class="col-md-6 col-lg-4 col-xl-3 pt-4 overflow-auto h-100"></div>
             <div class="col-md-6 col-lg-8 col-xl-9 overflow-auto h-100">
-                <div class="container mt-md-5 mb-2 pt-md-3 d-inline-flex justify-content-center">
+                <div class="container mt-md-5 mb-2 pt-md-4 d-inline-flex justify-content-center">
                     <div class="tabs shadow">
-                        <input type="radio" id="contracts-tab" name="tabs" onchange="gameView()" checked
+                        <input type="radio" id="tab1" name="tabs" value="contracts-panel" onchange="gameView()" checked
                             autocomplete="off" />
-                        <label class="tab" for="contracts-tab">Contracts</label>
-                        <input type="radio" id="map-tab" name="tabs" onchange="gameView()" autocomplete="off" />
-                        <label class="tab" for="map-tab">Map</label>
-                        <input type="radio" id="store-tab" name="tabs" onchange="gameView()" autocomplete="off" />
-                        <label class="tab" for="store-tab">Store</label>
+                        <label class="tab" for="tab1">Contracts</label>
+                        <input type="radio" id="tab2" name="tabs" value="map-panel" onchange="gameView()" autocomplete="off" />
+                        <label class="tab" for="tab2">Map</label>
+                        <input type="radio" id="tab3" name="tabs" value="store-panel" onchange="gameView()" autocomplete="off"/>
+                        <label class="tab" for="tab3" hidden>Store</label>
                         <span class="glider"></span>
                     </div>
                 </div>
 
 
-                <div id="contracts-panel" class="row row-cols-2 mt-2"></div>
+                <div id="contracts-panel" class="row row-cols-2"></div>
 
                 <div id="map-panel" class="container" hidden>
                     <div id="interactive-map" class="interactive-map" style="width: 1799px ; height: 1390px"></div>
@@ -86,9 +86,17 @@
                         </div>
                     </div>
                     
+                    <h2 class="fs-4 fw-bold mt-2">Film Name</h2>
+                    <p>Every content creator has a name of their own. You can choose a name in the style of an OnlyFans username, or you can use a film / stage name.</p>
+                    <div class="d-flex justify-content-center">
+                        <div class="form-floating">
+                            <input type="text" class="form-control border-primary" placeholder="Film Name" id="name" required>
+                            <label for="name">Film Name</label>
+                        </div>
+                    </div>
 
                     <!-- Home City + Region -->
-                    <h2 class="fs-4 fw-bold">Home City</h2>
+                    <h2 class="fs-4 fw-bold mt-2">Home City</h2>
                     <p>Choose the city that you will start your career in. Each city endows you with important expertise
                         during your early career, granting you a permanent bonus relating to the city's regional market
                         characteristics.</p>
@@ -368,7 +376,7 @@
             })
             element.parentElement.addEventListener('wheel', panzoom.zoomWithWheel)
         </script>
-        
+        <script src="js/progress.js"></script>
         <script src="js/info.js"></script>
         <script src="js/eventModal.js"></script>
         <script src="js/game.js"></script>
@@ -391,7 +399,6 @@
                 }));
             }, false);
         </script>
-
 </body>
 
 </html>

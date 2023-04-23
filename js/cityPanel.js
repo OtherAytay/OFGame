@@ -58,6 +58,114 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
         )
     }
 
+    var marketElem = null;
+    if (marketsUnlocked) {
+        marketElem = [React.createElement(
+            'li',
+            { class: "list-group-item fw-bold fs-5 text-" + marketCode + " border-" + marketCode },
+            market + " Regional Market"
+        ),
+        React.createElement(
+            'li',
+            { class: "list-group-item border-" + marketCode },
+            getRegionalMarketCharacteristics(market)
+        )]
+    }
+
+    var upgradesElem = null;
+    if (upgradesUnlocked) {
+        upgradesElem = React.createElement(
+            'div',
+            { class: "accordion-item" },
+            React.createElement(
+                'div',
+                { class: "accordion-header", id: "upgrades" },
+                React.createElement(
+                    'button',
+                    {
+                        class: "accordion-button collapsed",
+                        type: "button",
+                        'data-bs-toggle': "collapse",
+                        'data-bs-target': "#collapse-upgrades",
+                        'aria-expanded': "false",
+                        'aria-controls': "collapse-upgrades",
+                    },
+                    "Upgrades"
+                )
+            ),
+            React.createElement(
+                'div',
+                {
+                    class: "accordion-collapse collapse",
+                    id: "collapse-upgrades",
+                    'aria-labelledby': "upgrades",
+                    'data-bs-parent': "#cityPanelOptions"
+                },
+                React.createElement(
+                    'div',
+                    { class: "accordion-body text-center" },
+                    upgradeMenu()
+                ),
+            )
+        );
+    }
+
+    var itemsElem = null;
+    if (itemsUnlocked) {
+        itemsElem = React.createElement(
+            'div',
+            { class: "accordion-item" },
+            React.createElement(
+                'div',
+                {
+                    class: "accordion-header",
+                    id: "items"
+                },
+                React.createElement(
+                    "button",
+                    {
+                        type: "button",
+                        class: "accordion-button collapsed",
+                        'data-bs-toggle': "collapse",
+                        'data-bs-target': "#collapse-items",
+                        'aria-expanded': "false",
+                        'aria-controls': "collapse-items"
+                    },
+                    "Items"
+                )
+            ),
+            React.createElement(
+                'div',
+                {
+                    id: "collapse-items",
+                    class: "accordion-collapse collapse",
+                    'aria-labelledby': "items",
+                    'data-bs-parent': "#cityPanelOptions"
+                },
+                React.createElement(
+                    'div',
+                    { class: "accordion-body text-center" },
+                    ownedItems()
+                )
+            )
+        );
+    }
+
+    var eventElem = null;
+    if (eventsUnlocked) {
+        eventElem = [React.createElement(
+            'li',
+            {class: "list-group-item"},
+            "Luck: " + (luck * 100).toFixed(0) + "%"
+        ),
+        React.createElement(
+            'li',
+            {class: "list-group-item"},
+            "Event Chance: " + (eventChance * 100).toFixed(0) + "%"
+        ),
+        event]
+    }
+
     return React.createElement(
         'div',
         { class: "card shadow text-center border-primary my-5" },
@@ -66,47 +174,33 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
             { class: "card-header border-primary" },
             React.createElement(
                 'h1',
-                { class: "card-title fw-bold" },
-                currentCity
-            ),
-            specText,
+                { class: "card-title fw-bold fs-3" },
+                applyTitle()
+            )
         ),
         React.createElement(
             'div',
             { class: "card-body px-2" },
             React.createElement(
+                'h1',
+                { class: "card-title fw-bold" },
+                currentCity
+            ),
+            specText,
+            React.createElement(
                 'ul',
-                { class: "list-group d-inline-flex justify-content-center" },
+                { class: "list-group d-inline-flex justify-content-center mt-2" },
                 React.createElement(
                     'li',
                     { class: "list-group-item" },
                     "Money: $" + Math.floor(money)
                 ),
-                React.createElement(
-                    'li',
-                    {class: "list-group-item"},
-                    "Luck: " + (luck * 100).toFixed(0) + "%"
-                ),
-                React.createElement(
-                    'li',
-                    {class: "list-group-item"},
-                    "Event Chance: " + (eventChance * 100).toFixed(0) + "%"
-                ),
-                event
+                eventElem
             ),
             React.createElement(
                 'ul',
                 { class: "list-group mt-2" },
-                React.createElement(
-                    'li',
-                    { class: "list-group-item fw-bold fs-5 text-" + marketCode + " border-" + marketCode },
-                    market + " Regional Market"
-                ),
-                React.createElement(
-                    'li',
-                    { class: "list-group-item border-" + marketCode },
-                    getRegionalMarketCharacteristics(market)
-                ),
+                marketElem,
                 React.createElement(
                     'li',
                     { class: "list-group-item fs-5" },
@@ -353,77 +447,8 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
                         )
                     )
                 ),
-                React.createElement(
-                    'div',
-                    { class: "accordion-item" },
-                    React.createElement(
-                        'div',
-                        { class: "accordion-header", id: "upgrades" },
-                        React.createElement(
-                            'button',
-                            {
-                                class: "accordion-button collapsed",
-                                type: "button",
-                                'data-bs-toggle': "collapse",
-                                'data-bs-target': "#collapse-upgrades",
-                                'aria-expanded': "false",
-                                'aria-controls': "collapse-upgrades",
-                            },
-                            "Upgrades"
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        {
-                            class: "accordion-collapse collapse",
-                            id: "collapse-upgrades",
-                            'aria-labelledby': "upgrades",
-                            'data-bs-parent': "#cityPanelOptions"
-                        },
-                        React.createElement(
-                            'div',
-                            { class: "accordion-body text-center" },
-                            upgradeMenu()
-                        ),
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { class: "accordion-item" },
-                    React.createElement(
-                        'div',
-                        {
-                            class: "accordion-header",
-                            id: "items"
-                        },
-                        React.createElement(
-                            "button",
-                            {
-                                type: "button",
-                                class: "accordion-button collapsed",
-                                'data-bs-toggle': "collapse",
-                                'data-bs-target': "#collapse-items",
-                                'aria-expanded': "false",
-                                'aria-controls': "collapse-items"
-                            },
-                            "Items"
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        {
-                            id: "collapse-items",
-                            class: "accordion-collapse collapse",
-                            'aria-labelledby': "items",
-                            'data-bs-parent': "#cityPanelOptions"
-                        },
-                        React.createElement(
-                            'div',
-                            { class: "accordion-body text-center" },
-                            ownedItems()
-                        )
-                    )
-                ),
+                upgradesElem,
+                itemsElem,
                 React.createElement(
                     'div',
                     { class: "accordion-item" },

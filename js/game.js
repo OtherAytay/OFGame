@@ -12,6 +12,8 @@ var stFollowersRolling = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0,
 // Long-term followers on a 4 week cycle, followers pay monthly.
 var ltFollowersRolling = [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 var money = 0;
+var playerName = "";
+var activeTitle = "";
 var currentCity = "Paris";
 var currentRolls = [0, 0, 0, 0]; // Oral, Anal, Sissy, Bondage rolls
 var travelCosts = [];
@@ -27,10 +29,16 @@ const initUpgrades = { 'Interactive Media': 0, 'Community Management': 0, 'Profe
 const initUpgradeLimits = { 'Interactive Media': 10, 'Community Management': 10, 'Professional Marketing': 10, 'Premium Content': 10, 'Contract Negotiation': 3, 'High-Value Contractors': 3, 'Artisanal Retailers': 5  };
 var upgrades = initUpgrades;
 var upgradeLimits = initUpgradeLimits;
+var earnedMS = [];
+var earnedTitles = [];
 var ltRatio = 0.5;
 var luck = 0.5; // on scale from 0 to 1.
 var saturationCap = 1000;
-var minRoll = 1; 
+var minRoll = 1;
+var eventsUnlocked = false;
+var marketsUnlocked = false;
+var upgradesUnlocked = false;
+var itemsUnlocked = false; 
 
 /* Constants */
 //const version = 1.0;
@@ -54,6 +62,7 @@ var fopSelected = [];
 
 /* Player Stats */
 var playerStats = {
+    milestonePoints: 0,
     contracts: [0, 0, 0, 0, 0, 0],
     posts: 0,
     // augmentedPosts: (sissy + bondage);
@@ -93,6 +102,9 @@ function initializeGame() {
     if (items.size == 0) {
         generateItems();
     }
+    if (itemsUnlocked) {
+        document.querySelector('[for="tab3"]').hidden = false;
+    }
 
     // User Data
     if (!userDataFlag) {
@@ -120,6 +132,13 @@ function newSave() {
 }
 
 function startNewSave() {
+    // Name choice
+    var nameBlock = true;
+    playerName = document.getElementById("name").value;
+    if (playerName != "") {
+        nameBlock = false;
+    }
+
     // City choice
     var cityBlock = true; // Block submission until all required values are filled
     var cityChoices = document.getElementsByName("city-select")
@@ -179,7 +198,7 @@ function startNewSave() {
     fopSelected.includes("Strong Relations") ? partnerDurationMult = 2 : null;
 
     // If all required options are selected, dismiss modal and start game.
-    if (!(cityBlock || luckBlock || wealthBlock)) {
+    if (!(nameBlock || cityBlock || luckBlock || wealthBlock)) {
         bootstrap.Modal.getInstance(document.getElementById("newSave")).hide()
 
         // Initialize game state
@@ -454,16 +473,20 @@ function getYieldMods(city) {
     }
 
     // Regional Market Characteristics
-    yieldMods[0] += getRegionalMarketModifier(city.market, "Oral", activeAug != null);
-    yieldMods[1] += getRegionalMarketModifier(city.market, "Anal", activeAug != null);
-    yieldMods[2] += getRegionalMarketModifier(city.market, "Sissy", true);
-    yieldMods[3] += getRegionalMarketModifier(city.market, "Bondage", true);
+    if (marketsUnlocked) {
+        yieldMods[0] += getRegionalMarketModifier(city.market, "Oral", activeAug != null);
+        yieldMods[1] += getRegionalMarketModifier(city.market, "Anal", activeAug != null);
+        yieldMods[2] += getRegionalMarketModifier(city.market, "Sissy", true);
+        yieldMods[3] += getRegionalMarketModifier(city.market, "Bondage", true);
+    }
 
     // Item Perks
-    for (const item of activeItems) {
-        var mod = getItemYieldMod(item)
-        for (const cat of items.get(item).categories) {
-            yieldMods[contractTypes.indexOf(cat)] += mod
+    if (itemsUnlocked) {
+        for (const item of activeItems) {
+            var mod = getItemYieldMod(item)
+            for (const cat of items.get(item).categories) {
+                yieldMods[contractTypes.indexOf(cat)] += mod
+            }
         }
     }
 
@@ -629,18 +652,21 @@ function completeStandardPost(perfCat, perfRoll) {
     }
 
     // Update Event Status
-    if (activeEvent != "") {
-        if (--eventRemaining == 0) {
-            activeEvent = "";
-            eventChance = 0;
-        }
-    } else {
-        if (Math.random() < eventChance) {
-            var newEvent = rollEvent();
+    if (eventsUnlocked) {
+        if (activeEvent != "") {
+            if (--eventRemaining == 0) {
+                activeEvent = "";
+                eventChance = 0;
+            }
         } else {
-            eventChance += 0.1;
+            if (Math.random() < eventChance) {
+                var newEvent = rollEvent();
+            } else {
+                eventChance += 0.1;
+            }
         }
     }
+    
 
     // Detect multi-post contract
     if (augRemaining == 0) {
@@ -666,6 +692,7 @@ function completeStandardPost(perfCat, perfRoll) {
 
     protectedReroll(perfCat);
     toggleAug(contractTypes[activeAug]);
+    earnMilestones();
 
     localStorage["OFGame-userCities"] = JSON.stringify(userCities);
     localStorage["OFGame-stFollowersRolling"] = JSON.stringify(stFollowersRolling);
@@ -931,5 +958,76 @@ function buyItem(item) {
     localStorage["OFGame-playerStats"] = JSON.stringify(playerStats);
     generateCityPanel();
     generateStorePanel();
+}
+
+function earnMilestones() {
+    var unearnedMS = [...contractMS, ...followerMS, ...financeMS].filter((ms) => !earnedMS.map((ems) => ems.name).includes(ms.name))
+    var newlyEarnedMS = []
+    for (const ms of unearnedMS) {
+        var stat = playerStats[ms.stat];
+
+        if (ms.type == "oral") {
+            statEntry = 0
+        } else if (ms.type == "anal") {
+            statEntry = 1
+        } else if (ms.type == "sissy") {
+            statEntry = 2
+        } else if (ms.type == "bondage") {
+            statEntry = 3
+        } else if (ms.type == "total") {
+            statEntry = 4
+        }
+        
+        if (ms.stat.includes("Followers")) {
+            stat = stat[++statEntry]    
+        } else if (ms.stat.includes("contracts")) {
+            stat = stat[statEntry]
+        }
+        
+        if (stat >= ms.amount) {
+            earnedMS.push(ms);
+            newlyEarnedMS.push(ms);
+            playerStats["milestonePoints"] += ms.points;
+            if (ms.reward) {
+                grantReward(ms.reward);
+            }
+            
+        }
+    }
+    
+    localStorage["OFGame-earnedMS"] = JSON.stringify(earnedMS);
+    localStorage["OFGame-playerStats"] = JSON.stringify(playerStats);
+    return newlyEarnedMS
+}
+
+function grantReward(reward) {
+    if (reward == "System: Regional Markets") {
+        marketsUnlocked = true;
+        localStorage["OFGame-marketsUnlocked"] = true;
+    } else if (reward == "System: Upgrades") {
+        upgradesUnlocked = true;
+        localStorage["OFGame-upgradesUnlocked"] = true;
+    } else if (reward == "System: Items") {
+        itemsUnlocked = true;
+        localStorage["OFGame-itemsUnlocked"] = true;
+    } else if (reward == "System: Events") {
+        eventsUnlocked = true;
+        localStorage["OFGame-eventsUnlocked"] = true;
+    } else if (reward.startsWith("Title: ")) {
+        earnedTitles.push(reward.slice(7))
+        localStorage["OFGame-earnedTitles"] = JSON.stringify(earnedTitles);
+    }
+}
+
+function applyTitle() {
+    if (activeTitle) {
+        if (activeTitle.startsWith("the")) {
+            return playerName + " " + activeTitle;
+        } else {
+            return activeTitle + " " + playerName;
+        }
+    } else {
+        return playerName;
+    }
 }
 
