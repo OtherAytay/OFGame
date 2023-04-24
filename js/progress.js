@@ -163,7 +163,7 @@ contractMS = [
         amount: 5,
         stat: "visited",
         points: 10,
-        reward: "System: Regional Markets",
+        reward: null //"System: Regional Markets",
     },
     {
         name: "European Cock Explorer",

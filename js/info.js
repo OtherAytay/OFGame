@@ -78,7 +78,7 @@ function getAnalContract(roll) {
             return "On your stomach. Fast in, slow out, and deep.";
         case 7:
             return "Piledriver. Fast and deep.";
-        case 8: 
+        case 8:
         case 9:
             return "Place your longest dildo on the ground, and sit on your knees over it.";
         case 10:
@@ -94,8 +94,6 @@ function getSissyContract(roll) {
     switch (roll) {
         case 3:
             return "Wear a sports / activewear bra and leggings.";
-        case 9:
-            return "Write degrading words or phrases on your breasts and ass with lipstick.";
     }
 
     // Cumulative Rolls
@@ -151,22 +149,52 @@ function getBondageContract(roll) {
         case 1:
             return "Wear a collar for the next post.";
         case 2:
-            return "Wear a chest harness for your next post.";
+            return ["Wear a ",
+                React.createElement('a', { href: "https://www.theduchy.com/munenawa/", target: "_blank", rel: "noopener noreferrer" }, "chest harness"),
+                " for your next post."];
         case 3:
-            return "Wear a collar and chest harness for your next post.";
+            return ["Wear a collar and ",
+                React.createElement('a', { href: "https://www.theduchy.com/munenawa/", target: "_blank", rel: "noopener noreferrer" }, "chest harness"),
+                " for your next post."];
         case 4:
-            return "Tie hands behind back during your next post (oral). Tie legs behind head (anal) (ignore anal contract position).";   
         case 5:
+            return ["Complete your next post in a ",
+                React.createElement('a', { href: "https://www.theduchy.com/frog-tie/", target: "_blank", rel: "noopener noreferrer" }, "frogtie"),
+                " (oral) or ",
+                React.createElement('a', { href: "https://www.theduchy.com/malasana/", target: "_blank", rel: "noopener noreferrer" }, "Malasana tie"),
+                " (anal)."];
         case 6:
-            return "Spend 5 minutes in a frogtie before your next post.";
         case 7:
-            return "Spend 5 minutes in a hogtie before your next post.";
+            return ["Complete your next post with ",
+                React.createElement('a', { href: "https://www.theduchy.com/larks-head-single-column/", target: "_blank", rel: "noopener noreferrer" }, "each hand tied"),
+                " behind back (with enough slack for you to undo the rope) to a ",
+                React.createElement('a', { href: "https://www.theduchy.com/crotch-rope/", target: "_blank", rel: "noopener noreferrer" }, "crotch rope"),
+                " (oral) or ",
+                React.createElement('a', { href: "https://www.theduchy.com/larks-head-single-column/", target: "_blank", rel: "noopener noreferrer" }, "Tie each leg behind head"),
+                " and wear a mouth gag (anal) - position is now on your back."];
         case 8:
-            return "Wear a crotch rope attached to a collar or tight chest harness during your next post if it's oral. Wear a mouth gag during your next post if it's anal.";
+            return ["Complete your next post in a ",
+                React.createElement('a', { href: "https://www.theduchy.com/hishi-karada/", target: "_blank", rel: "noopener noreferrer" }, "rope dress")];
         case 9:
-            return "Spend 5 minutes in a frogtie with a crotch rope pulling on a collar before your next post.";
+            return ["Complete your next post in a ",
+                React.createElement('a', { href: "https://www.theduchy.com/frog-tie/", target: "_blank", rel: "noopener noreferrer" }, "frogtie"),
+                " (oral) or ",
+                React.createElement('a', { href: "https://www.theduchy.com/malasana/", target: "_blank", rel: "noopener noreferrer" }, "Malasana tie"),
+                " (anal).",
+                " with a ",
+                React.createElement('a', { href: "https://www.theduchy.com/malasana/", target: "_blank", rel: "noopener noreferrer" }, "crotch rope"),
+                " pulling on a collar"];
         case 10:
-            return "Spend 5 minutes in a hogtie with a crotch rope pulling on a collar before your next post.";
+            return ["Complete your next post in a ",
+                React.createElement('a', { href: "https://www.theduchy.com/pentagram-harness/", target: "_blank", rel: "noopener noreferrer" }, "star harness"),
+                " and a ",
+                React.createElement('a', { href: "https://www.theduchy.com/frog-tie/", target: "_blank", rel: "noopener noreferrer" }, "frogtie"),
+                " (oral) or ",
+                React.createElement('a', { href: "https://www.theduchy.com/malasana/", target: "_blank", rel: "noopener noreferrer" }, "Malasana tie"),
+                " (anal).",
+                " with a ",
+                React.createElement('a', { href: "https://www.theduchy.com/crotch-rope/", target: "_blank", rel: "noopener noreferrer" }, "crotch rope"),
+                " pulling on a collar"];
     }
 }
 
@@ -183,7 +211,13 @@ function getFusionContract(city) {
         case "Rome":
             return "Apply full body bondage (chest harness and crotch rope) and collar. Spend 15 minutes in a frogtie with a dildo or buttplug tied into your mouth (or use a dildo gag). Make sure you can breathe and can easily remove it in an emergency.";
         case "Budapest":
-            return "Wear a full feminine outfit and makeup. Apply full body bondage (tight chest harness and crotch rope) and collar over the clothing into a frogtie position for 15 minutes.";
+            return ["Apply a full face of makeup. Wear a crop top and some thigh high stockings. Over the clothing, tie a ",
+                React.createElement('a', { href: "https://www.theduchy.com/string-bikini/", target: "_blank", rel: "noopener noreferrer" }, "rope bikini"),
+                " and ",
+                React.createElement('a', { href: "https://www.theduchy.com/heart-ladder/#TheFramePicturesText", target: "_blank", rel: "noopener noreferrer" }, "rope stockings"),
+                " with a ",
+                React.createElement('a', { href: "https://www.theduchy.com/crotch-rope/", target: "_blank", rel: "noopener noreferrer" }, "crotch rope"),
+                " pulling on a collar. Add a skirt. Do a sexy photoshoot, and then wear the outfit for 15 minutes."];
     }
 }
 
@@ -211,65 +245,65 @@ function rollEvent() {
     if (roll < luck) { // pos event
         var event = randRange(0, 2, true);
         if (roll < Math.max(0, luck - 0.35)) {
-            return {pos: true, severity: "Major", eventNum: event};
+            return { pos: true, severity: "Major", eventNum: event };
         } else if (roll < Math.max(0, luck - 0.15)) {
-            return {pos: true, severity: "Moderate", eventNum: event};
+            return { pos: true, severity: "Moderate", eventNum: event };
         } else {
-            return {pos: true, severity: "Minor", eventNum: event};
+            return { pos: true, severity: "Minor", eventNum: event };
         }
     } else { // neg event
         var event = randRange(0, 2, true);
         if (roll > Math.min(1, luck + 0.35)) {
-            return {pos: false, severity: "Major", eventNum: event};
+            return { pos: false, severity: "Major", eventNum: event };
         } else if (roll > Math.min(1, luck + 0.15)) {
-            return {pos: false, severity: "Moderate", eventNum: event};
+            return { pos: false, severity: "Moderate", eventNum: event };
         } else {
-            return {pos: false, severity: "Minor", eventNum: event};
+            return { pos: false, severity: "Minor", eventNum: event };
         }
     }
 }
 
-function getEventDetails({pos, severity, eventNum}) {
+function getEventDetails({ pos, severity, eventNum }) {
     if (pos) {
         switch (severity) {
             case "Minor":
                 switch (eventNum) {
-                    case 0: return {name: "Great Worksmanship", text: "You're have a wonderful day, and the quality of your content is excellent because of it.", effect: "Your next post gains twice as many followers and money."}
-                    case 1: return {name: "Paid in Exposure", text: "The contractor insists the exposure from the post will be more than enough to cover the monetary costs. It turns out they may have been right!", effect: "Your next post gains thrice as many followers but no money."}
-                    case 2: return {name: "Generous Tip", text: "A follower was feeling extra generous while watching your content.", effect: "Gain $100."}
+                    case 0: return { name: "Great Worksmanship", text: "You're have a wonderful day, and the quality of your content is excellent because of it.", effect: "Your next post gains twice as many followers and money." }
+                    case 1: return { name: "Paid in Exposure", text: "The contractor insists the exposure from the post will be more than enough to cover the monetary costs. It turns out they may have been right!", effect: "Your next post gains thrice as many followers but no money." }
+                    case 2: return { name: "Generous Tip", text: "A follower was feeling extra generous while watching your content.", effect: "Gain $100." }
                 }
             case "Moderate":
                 switch (eventNum) {
-                    case 0: return {name: "OnlyFans Craze", text: "People have been dropping money on OnlyFans content like crazy!", effect: "All money gains doubled for the next 2 posts."}
-                    case 1: return {name: "Bondage Con", text: "Participation in a Bondage kink convention really pleases your bondage followers!", effect: "Wear tight full body rope bondage (chest harness and crotch rope) and collar for 15 minutes. Gain $10 per bondage follower."}
-                    case 2: return {name: "Sissy Con", text: "Participation in a Sissy kink convention really pleases your sissy followers!", effect: "Wear a full feminine outfit and makeup for 15 minutes. Gain $10 per sissy follower."}
+                    case 0: return { name: "OnlyFans Craze", text: "People have been dropping money on OnlyFans content like crazy!", effect: "All money gains doubled for the next 2 posts." }
+                    case 1: return { name: "Bondage Con", text: "Participation in a Bondage kink convention really pleases your bondage followers!", effect: "Wear tight full body rope bondage (chest harness and crotch rope) and collar for 15 minutes. Gain $10 per bondage follower." }
+                    case 2: return { name: "Sissy Con", text: "Participation in a Sissy kink convention really pleases your sissy followers!", effect: "Wear a full feminine outfit and makeup for 15 minutes. Gain $10 per sissy follower." }
                 }
             case "Major":
                 switch (eventNum) {
-                    case 0: return {name: "Limelight", text: "Hard work has paid off. OnlyFans features you on their front page!", effect: "Double your short-term followers."}
-                    case 1: return {name: "Tax Credit", text: "The government has erroneously miscalculated your tax charges.", effect: "Gain 25% of your money or $1000, whichever is higher."}
-                    case 2: return {name: "Samaritan Award", text: "You've been recognized for great actions outside of the studio.", effect: "Gain 25% of long-term followers."}
+                    case 0: return { name: "Limelight", text: "Hard work has paid off. OnlyFans features you on their front page!", effect: "Double your short-term followers." }
+                    case 1: return { name: "Tax Credit", text: "The government has erroneously miscalculated your tax charges.", effect: "Gain 25% of your money or $1000, whichever is higher." }
+                    case 2: return { name: "Samaritan Award", text: "You've been recognized for great actions outside of the studio.", effect: "Gain 25% of long-term followers." }
                 }
         }
     } else {
         switch (severity) {
             case "Minor":
                 switch (eventNum) {
-                    case 0: return {name: "Poor Worksmanship", text: "You're having a bad day, and the quality of your content is suffering because of it.", effect: "Your next post gains half as many followers and money."}
-                    case 1: return {name: "Extra Bored", text: "By chance, more followers than usual seem to have gotten bored of your content.", effect: "Lose 10% of all followers."}
-                    case 2: return {name: "Speeding Ticket", text: "On your way to the studio, you were pulled over and ticketed for speeding. Too excited to starting film?", effect: "Lose $100."}
+                    case 0: return { name: "Poor Worksmanship", text: "You're having a bad day, and the quality of your content is suffering because of it.", effect: "Your next post gains half as many followers and money." }
+                    case 1: return { name: "Extra Bored", text: "By chance, more followers than usual seem to have gotten bored of your content.", effect: "Lose 10% of all followers." }
+                    case 2: return { name: "Speeding Ticket", text: "On your way to the studio, you were pulled over and ticketed for speeding. Too excited to starting film?", effect: "Lose $100." }
                 }
             case "Moderate":
                 switch (eventNum) {
-                    case 0: return {name: "Economic Downturn", text: "Recent movements in the economy have tightened people's budgets, your posts are less profitable.", effect: "All money gains halved for the next 3 posts."}
-                    case 1: return {name: "Bondage Bunny", text: "A previous bondage contractor was displeased with your work and has shown up to your workplace demanding a better performance or he would turn the bondage community against you.", effect: "Wear tight full body rope bondage (chest harness and crotch rope), mouth gag, and collar. Insert an anal hook or large buttplug. Connect the hook or crotch rope to your collar tightly. Remain in the frogtie position for 30 minutes."}
-                    case 2: return {name: "Followed Home", text: "An overzealous fan followed you home. He demands that you perform sexual acts on him or he would leak your home address.", effect: "Your next post gains no followers or money."}
+                    case 0: return { name: "Economic Downturn", text: "Recent movements in the economy have tightened people's budgets, your posts are less profitable.", effect: "All money gains halved for the next 3 posts." }
+                    case 1: return { name: "Bondage Bunny", text: "A previous bondage contractor was displeased with your work and has shown up to your workplace demanding a better performance or he would turn the bondage community against you.", effect: "Wear tight full body rope bondage (chest harness and crotch rope), mouth gag, and collar. Insert an anal hook or large buttplug. Connect the hook or crotch rope to your collar tightly. Remain in the frogtie position for 30 minutes." }
+                    case 2: return { name: "Followed Home", text: "An overzealous fan followed you home. He demands that you perform sexual acts on him or he would leak your home address.", effect: "Your next post gains no followers or money." }
                 }
             case "Major":
                 switch (eventNum) {
-                    case 0: return {name: "Eclipsed", text: "An OF superstar has risen to fame overnight, grabbing the attention of less loyal followers.", effect: "Lose all short-term followers."}
-                    case 1: return {name: "Tax Fraud", text: "The government has sanctioned you for improper tax filings.", effect: "Lose 50% of your money or $1000, whichever is higher. Pay in full or go bankrupt."}
-                    case 2: return {name: "Scandalous", text: "You've been accused of scandalous behavior. True or not, the damage is done.", effect: "Lose 50% of long-term followers."}
+                    case 0: return { name: "Eclipsed", text: "An OF superstar has risen to fame overnight, grabbing the attention of less loyal followers.", effect: "Lose all short-term followers." }
+                    case 1: return { name: "Tax Fraud", text: "The government has sanctioned you for improper tax filings.", effect: "Lose 50% of your money or $1000, whichever is higher. Pay in full or go bankrupt." }
+                    case 2: return { name: "Scandalous", text: "You've been accused of scandalous behavior. True or not, the damage is done.", effect: "Lose 50% of long-term followers." }
                 }
         }
     }
@@ -284,7 +318,7 @@ function createCity(name, size, special, market, x, y) {
 
     cities.set(name, { size: size, special: special, market: market, x: x, y: y });
     if (!userDataFlag) {
-        userCities[name] = {...initUserCity, fusionAvailable: fusionAvailable};
+        userCities[name] = { ...initUserCity, fusionAvailable: fusionAvailable };
     }
 }
 

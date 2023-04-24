@@ -36,7 +36,7 @@ var luck = 0.5; // on scale from 0 to 1.
 var saturationCap = 1000;
 var minRoll = 1;
 var eventsUnlocked = false;
-var marketsUnlocked = false;
+var marketsUnlocked = true; // default to true, can make FoP that makes thems start disabled
 var upgradesUnlocked = false;
 var itemsUnlocked = false; 
 
@@ -192,6 +192,7 @@ function startNewSave() {
 
     fopSelected.includes("Due Diligence") ? contractDurationMult = 2 : null;
     fopSelected.includes("Economic Recession") ? moneyYieldMult = 0.5 : null;
+    fopSelected.includes("Market Homogeneity") ? marketsUnlocked = false : null;
     fopSelected.includes("Intermarket Tariffs") ? marketTax = 300 : null;
     fopSelected.includes("Attention Deficit") ? ltRatio = 0.25 : null;
     fopSelected.includes("Extensive Competition") ? partnerChanceMult = 0.5 : null;
@@ -1019,15 +1020,20 @@ function grantReward(reward) {
     }
 }
 
-function applyTitle() {
-    if (activeTitle) {
-        if (activeTitle.startsWith("the")) {
-            return playerName + " " + activeTitle;
+function applyTitle(title = activeTitle) {
+    if (title) {
+        titleElem = React.createElement('span', {class: "text-fusion-OS"}, title)
+        if (title.startsWith("the")) {
+            return [playerName + " ", titleElem];
         } else {
-            return activeTitle + " " + playerName;
+            return [titleElem, " " + playerName];
         }
     } else {
         return playerName;
     }
+}
+
+function activateTitle(title) {
+    
 }
 

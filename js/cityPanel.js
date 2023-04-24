@@ -166,18 +166,56 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
         event]
     }
 
+    var titleMenu = [];
+    if (earnedTitles.length == 0) {
+        titleMenu = React.createElement(
+            'li', null,
+            React.createElement(
+                'a', {class: "dropdown-item disabled"}, "No titles unlocked"
+            )
+        )
+    } else {
+        listTitles = [...earnedTitles, ""];
+        for (const title of listTitles) {
+            titleMenu.push(React.createElement(
+                'li', null,
+                React.createElement(
+                    'a', 
+                    {
+                        class: "dropdown-item", 
+                        value: title, 
+                        onClick: (e) => {
+                            if (e.target.tagName == "SPAN") {
+                                activeTitle = e.target.parentElement.attributes.value.value;
+                            } else {
+                                activeTitle = e.target.attributes.value.value; 
+                            }
+                            generateCityPanel();
+                        }
+                    }, 
+                        applyTitle(title)
+                )
+            ))
+        }
+    }
+
     return React.createElement(
         'div',
         { class: "card shadow text-center border-primary my-5" },
         React.createElement(
             'div',
-            { class: "card-header border-primary" },
+            {class: "dropdown card-header"},
             React.createElement(
-                'h1',
-                { class: "card-title fw-bold fs-3" },
+                'a',
+                { class: "dropdown-toggle border-primary card-title fw-bold fs-3", 'data-bs-toggle':"dropdown", style: {"text-decoration": "none"}},
                 applyTitle()
+            ),
+            React.createElement(
+                'ul',
+                {class: "dropdown-menu"},
+                titleMenu
             )
-        ),
+        ),        
         React.createElement(
             'div',
             { class: "card-body px-2" },
