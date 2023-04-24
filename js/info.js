@@ -186,7 +186,7 @@ function getBondageContract(roll) {
                 " pulling on a collar"];
         case 10:
             return ["Complete your next post in a ",
-                React.createElement('a', { href: "https://www.theduchy.com/pentagram-harness/", target: "_blank", rel: "noopener noreferrer" }, "star harness"),
+                React.createElement('a', { href: "https://www.theduchy.com/munenawa/", target: "_blank", rel: "noopener noreferrer" }, "star harness"),
                 " and a ",
                 React.createElement('a', { href: "https://www.theduchy.com/frog-tie/", target: "_blank", rel: "noopener noreferrer" }, "frogtie"),
                 " (oral) or ",
@@ -212,7 +212,7 @@ function getFusionContract(city) {
             return "Apply full body bondage (chest harness and crotch rope) and collar. Spend 15 minutes in a frogtie with a dildo or buttplug tied into your mouth (or use a dildo gag). Make sure you can breathe and can easily remove it in an emergency.";
         case "Budapest":
             return ["Apply a full face of makeup. Wear a crop top and some thigh high stockings. Over the clothing, tie a ",
-                React.createElement('a', { href: "https://www.theduchy.com/string-bikini/", target: "_blank", rel: "noopener noreferrer" }, "rope bikini"),
+                React.createElement('a', { href: "https://www.theduchy.com/pentagram-harness/", target: "_blank", rel: "noopener noreferrer" }, "star harness"),
                 " and ",
                 React.createElement('a', { href: "https://www.theduchy.com/heart-ladder/#TheFramePicturesText", target: "_blank", rel: "noopener noreferrer" }, "rope stockings"),
                 " with a ",
@@ -822,7 +822,7 @@ function getItemUse(item) {
         case "Ring Gag": return "Wear a ring gag. Ensure the chosen dildo fits inside.";
         case "Vibrating Plug": return "Insert a vibrating plug at the highest intensity.";
         case "Fantasy Dildo": return "Replace normal dildo with a fantasy dildo. It must be distinct from normal dildos (e.g. veiny is not fantasy).";
-        case "Tunnel Plug": return "Insert a tunnel plug. Ensur the chosen dildo fits inside.";
+        case "Tunnel Plug": return "Insert a tunnel plug. Ensure the chosen dildo fits inside.";
         case "Nose Hook": return "Insert a nose hook and bind it to a collar.";
         case "Ankle Cuffs": return "Bind your ankles together tightly with ankle cuffs.";
         case "Wig": return "Wear a wig";
