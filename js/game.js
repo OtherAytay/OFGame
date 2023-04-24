@@ -859,15 +859,46 @@ function completeFusionPost(city) {
         stFollowers[i] += Math.floor(catYield * (1 - ltRatio));
         ltFollowers[i] += Math.ceil(catYield * ltRatio);
     }
+    
+    // track follower gains
+    const atomicFollowerGain = followerYield[i].reduce((a, b) => a + b);
+    if (atomicFollowerGain > playerStats['maxAtomicFollowerGain']) {
+        playerStats['maxAtomicFollowerGain'] = Math.ceil(atomicFollowerGain);
+    }
+
+    const followersBefore = getTotalFollowers();
+    for (var i = 0; i < perfYields.length; i++) {
+        playerStats['lifetimeFollowers'][i] += followerYield[i]; // category
+        playerStats['lifetimeFollowers'][5] += followerYield[i]; // total
+        if (followerYield[i] + followersBefore[i] > playerStats['maxFollowers'][i]) {
+            playerStats['maxFollowers'][i] = followerYield[i] + followersBefore[i];
+        }
+    }
+    const followersAfter = getTotalFollowers();
+    if (followersAfter.reduce((a, b) => a + b) > playerStats["maxFollowers"][5]) {
+        playerStats["maxFollowers"][5] = followersAfter.reduce((a, b) => a + b);
+    }
+    
+    // Money Yield
+    const moneyBefore = money;
     stCycle(stFollowers, cats);
     ltCycle(ltFollowers, cats);
+    const moneyAfter = money;
+    playerStats["lifetimeMoney"] += moneyAfter - moneyBefore;
 
+    if (moneyAfter > playerStats["maxMoney"]) {
+        playerStats["maxMoney"] = moneyAfter;
+    }
+    if (moneyAfter - moneyBefore > playerStats["maxAtomicMoneyGain"]) {
+        playerStats["maxAtomicMoneyGain"] = moneyAfter - moneyBefore;
+    }
 
     userCities[currentCity]["posts"] += 1;
     userCities[currentCity]["fusionAvailable"] = false;
 
     localStorage["OFGame-userCities"] = JSON.stringify(userCities);
     localStorage["OFGame-followers"] = JSON.stringify(ltFollowers);
+    earnMilestones();
     generateCityPanel();
     generateContractPanel();
     generateStorePanel();
