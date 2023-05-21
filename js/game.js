@@ -861,13 +861,13 @@ function completeFusionPost(city) {
     }
     
     // track follower gains
-    const atomicFollowerGain = followerYield[i].reduce((a, b) => a + b);
+    const atomicFollowerGain = followerYield.reduce((a, b) => a + b);
     if (atomicFollowerGain > playerStats['maxAtomicFollowerGain']) {
         playerStats['maxAtomicFollowerGain'] = Math.ceil(atomicFollowerGain);
     }
 
     const followersBefore = getTotalFollowers();
-    for (var i = 0; i < perfYields.length; i++) {
+    for (var i = 0; i < followerYield.length; i++) {
         playerStats['lifetimeFollowers'][i] += followerYield[i]; // category
         playerStats['lifetimeFollowers'][5] += followerYield[i]; // total
         if (followerYield[i] + followersBefore[i] > playerStats['maxFollowers'][i]) {
