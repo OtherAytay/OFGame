@@ -236,17 +236,16 @@ function contractCard({ cat, roll }) {
     title += cat + " (" + roll + ")";
 
     var moneyShot = null;
-    activeItems.push("Squirting Dildo")
     if ((cat == "Oral" || cat == "Anal") && activeItems.includes("Squirting Dildo")) {
         moneyShot = React.createElement(
             'div',
-            { class: "card mt-2" },
+            { class: "card mt-2 border-" + specCode },
             React.createElement(
                 'div',
                 { class: "row g-0" },
                 React.createElement(
                     'div',
-                    { class: "col-md-4" },
+                    { class: "col-xl-6 col-md-4" },
                     React.createElement(
                         'img',
                         {
@@ -258,12 +257,12 @@ function contractCard({ cat, roll }) {
                 ),
                 React.createElement(
                     'div',
-                    { class: "col-md-8 d-flex flex-column" },
-                    React.createElement('h5', { class: "card-header card-title", style: {"background-color": "#FFFFFF"} }, "Money Shot"),
+                    { class: "col-xl-6 col-md-8 d-flex flex-column" },
+                    React.createElement('h5', { class: "card-header card-title fw-bold" }, "Money Shot"),
                     React.createElement(
                         'div',
-                        { class: "card-body", },
-                        getMoneyShot(cat, currentMoneyShots[contractTypes.indexOf(cat)]),
+                        { class: "card-body d-flex", },
+                        React.createElement('p', {class: "mx-auto my-auto"}, getMoneyShot(cat, currentMoneyShots[contractTypes.indexOf(cat)])),
                     ),
                     React.createElement(
                         'div',
@@ -281,7 +280,7 @@ function contractCard({ cat, roll }) {
                         React.createElement(
                             'label',
                             {
-                                class: "btn fs-5 w-50 btn-outline-primary",
+                                class: "btn fs-5 w-auto btn-outline-bondage",
                                 for: "money-shot-" + specCode + "-active"
                             },
                             "Activate"
