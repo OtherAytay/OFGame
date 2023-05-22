@@ -813,7 +813,7 @@ function createItem(name, categories, effect, tier) {
 
 function getItemUse(item) {
     switch (item) {
-        case "Hand Cuffs": return "Cuff hands behind back (if you are not using them to hold you up).";
+        case "Hand Cuffs": return "Cuff hands behind back.";
         case "Large Plug": return "Insert a large-fitting plug.";
         case "Large Dildo": return "Replace normal dildo with a larger one.";
         case "Dildo Gag": return "Wear a dildo gag. Ensure you can still breathe.";
@@ -828,7 +828,7 @@ function getItemUse(item) {
         case "Wig": return "Wear a wig";
         case "High Heels": return "Wear high heels";
         case "Lingerie Set": return "Wear a lingerie bralette, panties, garter belt, and stockings. Replaces all feminine wear.";
-        case "Squirting Dildo": return "Replace a normal dildo with a squirting dildo. At the end of the post, squirt both outside of and in the hole used."
+        case "Squirting Dildo": return "Replace a normal dildo with a squirting dildo. Allows for money shots."
         case "Anal Hook": return "Insert an anal hook connected tightly to a gag, collar, or chest harness.";
         case "Face Harness": return "Wear a face harness. Must allow oral to be used with oral contracts";
         case "Tail Plug": return "Wear a tail plug.";
@@ -946,4 +946,39 @@ function getIncompatibleItemsText(item) {
 
 function getIncompatibleContracts(item) {
 
+}
+
+function getMoneyShot(cat, roll) {
+    var text = "Make your dildo cum 10ml "
+    if (cat == "Oral") {
+        switch (roll) {
+            case 1: return text + "on your face.";
+            case 2: return text + "onto your stuck-out tongue.";
+            case 3: return text + "inside your mouth." ;
+            case 4: return text + "down your throat.";
+        }
+    } else {
+        switch (roll) {
+            case 1: return text + "on your ass cheeks.";
+            case 2: return text + "inside your asshole.";
+            case 3: return text + "on your back.";
+        }
+    }
+}
+
+function getMoneyShotImg(cat, roll) {
+    if (cat == "Oral") {
+        switch (roll) {
+            case 1: return "cum-face.jpg";
+            case 2: return "cum-tongue.jpg";
+            case 3: return "cum-mouth.jpg";
+            case 4: return "cum-throat.jpg";
+        }
+    } else {
+        switch (roll) {
+            case 1: return "cum-asscheeks.jpeg";
+            case 2: return "cum-asshole.jpg";
+            case 3: return "cum-back.jpg";
+        }
+    }
 }

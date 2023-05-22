@@ -119,7 +119,8 @@ const initData = {
     "OFGame-upgradesUnlocked": false,
     "OFGame-itemsUnlocked": false,
     "OFGame-playerName": "",
-    "OFGame-activeTitle": ""
+    "OFGame-activeTitle": "",
+    "OFGame-currentMoneyShots": [0, 0]
 }
 
 function assimilateSave() {
@@ -215,6 +216,7 @@ function saveLocal() {
     localStorage["OFGame-playerName"] = playerName;
     localStorage["OFGame-activeTitle"] = activeTitle;
     localStorage["OFGame-earnedTitles"] = JSON.stringify(earnedTitles);
+    localStorage["OFGame-currentMoneyShots"] = JSON.stringify(currentMoneyShots)
 }
 
 function loadLocal() {
@@ -253,8 +255,8 @@ function loadLocal() {
             playerName = localStorage["OFGame-playerName"]
             activeTitle = localStorage["OFGame-activeTitle"]
             earnedTitles = JSON.parse(localStorage["OFGame-earnedTitles"])
+            currentMoneyShots = JSON.parse(localStorage["OFGame-currentMoneyShots"])
         } catch (error) { }
-
     } else {
         userDataFlag = false;
     }

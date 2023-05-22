@@ -15,7 +15,7 @@ function generateContractPanel() {
                 document.getElementById("sissy-active").checked = true;
                 document.querySelector("label[for=sissy-active]").innerHTML = "Active";
 
-                if (augRemaining > 0) {           
+                if (augRemaining > 0) {
                     document.querySelector("label[for=sissy-active]").innerHTML = "Active";
                     document.querySelector("label[for=bondage-active]").innerHTML = "Disabled";
                 }
@@ -88,6 +88,22 @@ function toggleAug(cat) {
     generateContractPanel();
 }
 
+function toggleMoneyShot() {
+    if (activeMoneyShot) {
+        document.getElementById("money-shot-oral-active").checked = false;
+        document.getElementById("money-shot-anal-active").checked = false;
+        document.querySelector("label[for=money-shot-oral-active]").innerHTML = "Activate";
+        document.querySelector("label[for=money-shot-anal-active]").innerHTML = "Activate";
+        activeMoneyShot = false;
+    } else {
+        document.getElementById("money-shot-oral-active").checked = true;
+        document.getElementById("money-shot-anal-active").checked = true;
+        document.querySelector("label[for=money-shot-oral-active]").innerHTML = "Active";
+        document.querySelector("label[for=money-shot-anal-active]").innerHTML = "Active";
+        activeMoneyShot = true;
+    }
+}
+
 function rerollContract(cat) {
     userCities[currentCity]["reroll" + cat] -= 1;
     protectedReroll(cat);
@@ -95,9 +111,9 @@ function rerollContract(cat) {
 
 function getDuration(cat, roll) {
     if (cat == "Oral") {
-        if (roll == 8) { return "20 deepthroats"}
-        if (roll == 9) { return "10 deepthroats"}
-        if (roll == 10) { return "120 seconds in throat"}
+        if (roll == 8) { return "20 deepthroats" }
+        if (roll == 9) { return "10 deepthroats" }
+        if (roll == 10) { return "120 seconds in throat" }
 
         baseDuration = 5 * contractDurationMult;
         if (cities.get(currentCity).market == "Anglo") {
@@ -139,7 +155,7 @@ function getDuration(cat, roll) {
                 return augRemaining + " post"
             }
         }
-        
+
         if (cities.get(currentCity).market == "Greco-Roman") {
             return baseDuration * 2 + " posts";
         }
@@ -169,12 +185,12 @@ function contractCard({ cat, roll }) {
             'button',
             {
                 class: "btn ms-2 fs-5 w-25 btn-outline-primary",
-                onClick: () => {rerollContract(cat)}
+                onClick: () => { rerollContract(cat) }
             },
             "Reroll"
         )
     }
-    
+
 
     if (cat == "Oral" || cat == "Anal") {
         var title = "Performance: ";
@@ -219,7 +235,61 @@ function contractCard({ cat, roll }) {
     }
     title += cat + " (" + roll + ")";
 
-
+    var moneyShot = null;
+    if ((cat == "Oral" || cat == "Anal") && activeItems.includes("Squirting Dildo")) {
+        moneyShot = React.createElement(
+            'div',
+            { class: "card mt-2 border-" + specCode },
+            React.createElement(
+                'div',
+                { class: "row g-0" },
+                React.createElement(
+                    'div',
+                    { class: "col-xl-6 col-md-4" },
+                    React.createElement(
+                        'img',
+                        {
+                            class: "img-fluid rounded-start",
+                            style: { 'object-fit': "cover", 'object-position': "center center", width: "100%", height: "100%", 'aspect-ratio': "1/1" },
+                            src: "images/" + getMoneyShotImg(cat, currentMoneyShots[contractTypes.indexOf(cat)])
+                        },
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { class: "col-xl-6 col-md-8 d-flex flex-column" },
+                    React.createElement('h5', { class: "card-header card-title fw-bold" }, "Money Shot"),
+                    React.createElement(
+                        'div',
+                        { class: "card-body d-flex", },
+                        React.createElement('p', {class: "mx-auto my-auto"}, getMoneyShot(cat, currentMoneyShots[contractTypes.indexOf(cat)])),
+                    ),
+                    React.createElement(
+                        'div',
+                        { class: "card-footer" },
+                        React.createElement(
+                            'input',
+                            {
+                                id: "money-shot-" + specCode + "-active",
+                                type: "checkbox",
+                                class: "btn-check",
+                                autocomplete: "off",
+                                onClick: () => { toggleMoneyShot() }
+                            }
+                        ),
+                        React.createElement(
+                            'label',
+                            {
+                                class: "btn fs-5 w-auto btn-outline-bondage",
+                                for: "money-shot-" + specCode + "-active"
+                            },
+                            "Activate"
+                        ),
+                    )
+                )
+            )
+        )
+    }
 
     return React.createElement(
         'div',
@@ -340,6 +410,7 @@ function contractCard({ cat, roll }) {
                                 )
                             )
                         ),
+                        moneyShot
                     ),
                     button
                 )
