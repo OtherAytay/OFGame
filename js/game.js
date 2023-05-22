@@ -16,9 +16,11 @@ var playerName = "";
 var activeTitle = "";
 var currentCity = "Paris";
 var currentRolls = [0, 0, 0, 0]; // Oral, Anal, Sissy, Bondage rolls
+var currentMoneyShots = [0, 0];
 var travelCosts = [];
 var activeItems = [];
 var activeAug = null // 2: Sissy, 3: Bondage - corresponds to currentRolls idx
+var activeMoneyShot = false;
 var augRemaining = 0; // for multi-post contracts
 var activeEvent = "";
 var eventChance = 0; // raises by 0.1 every post that does not trigger an event. Resets to 0.1 after every event.
@@ -222,7 +224,12 @@ function newCity() {
         randRange(minRoll, 10, true),
         randRange(minRoll, 10, true),
         randRange(minRoll, 10, true)
-    ]
+    ];
+
+    currentMoneyShots = [
+        randRange(1, 4, true),
+        randRange(1, 3, true)
+    ];
 
     travelCosts = [];
     var connections = cityGraph.get(currentCity);
@@ -422,9 +429,9 @@ function upgradeCost(upgradeType) {
 function itemCost(item) {
     switch (items.get(item).tier) {
         case 1: return 1000;
-        case 2: return 3000;
-        case 3: return 5000;
-        case 4: return 10000;
+        case 2: return 2000;
+        case 3: return 3000;
+        case 4: return 5000;
     }
 }
 
@@ -642,8 +649,14 @@ function completeStandardPost(perfCat, perfRoll) {
     const moneyBefore = money;
     stCycle(stFollowers, [perfCat, augCat]);
     ltCycle(ltFollowers, [perfCat, augCat]);
+    if (activeMoneyShot) {
+        console.log("Cumshot Money: $" + 0.5 * moneyYieldMult * (perfYields.reduce((a, b) => a + b) + augYields.reduce((a,b) => a + b)))
+        money += 0.5 * moneyYieldMult * (perfYields.reduce((a, b) => a + b) + augYields.reduce((a,b) => a + b));
+    }
     const moneyAfter = money;
     playerStats["lifetimeMoney"] += moneyAfter - moneyBefore;
+
+
 
     if (moneyAfter > playerStats["maxMoney"]) {
         playerStats["maxMoney"] = moneyAfter;
@@ -678,9 +691,9 @@ function completeStandardPost(perfCat, perfRoll) {
         } else { // no multi-post contract, reroll
             protectedReroll(augCat);
         }
-    } else {
-        augRemaining--;
     }
+    augRemaining--;
+
 
     userCities[currentCity]["posts"] += 1;
     playerStats["posts"]++;
@@ -692,6 +705,13 @@ function completeStandardPost(perfCat, perfRoll) {
     }
 
     protectedReroll(perfCat);
+    if (activeMoneyShot) {
+        if (perfCat == "Oral") {
+            currentMoneyShots[0] = randRange(1, 4, true)
+        } else {
+            currentMoneyShots[1] = randRange(1, 3, true)
+        }
+    }
     toggleAug(contractTypes[activeAug]);
     earnMilestones();
 
@@ -705,6 +725,7 @@ function completeStandardPost(perfCat, perfRoll) {
     localStorage["OFGame-activeEvent"] = activeEvent;
     localStorage["OFGame-eventChance"] = eventChance;
     localStorage["OFGame-playerStats"] = JSON.stringify(playerStats);
+    localStorage["OFGame-currentMoneyShots"] = JSON.stringify(currentMoneyShots);
 
     generateCityPanel();
     generateContractPanel();
