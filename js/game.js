@@ -535,7 +535,7 @@ function calculateDiminishedYieldMod(city, cat, roll) {
     }
 
     // apply yield decay
-    decay = (69 - 12.75) * Math.max(0, (1 - getSaturationFactor())) + 12.75;
+    decay = (46 - 12.75) * Math.max(0, (1 - getSaturationFactor())) + 12.75;
     yield = (Math.max(0, Math.min(yield, decay * Math.log10(yield))));
 
     // return the ratio of the final yield over the base yield. Will be 1 if no diminishment is enacted.
@@ -561,7 +561,7 @@ function calculateStandardFollowerYield(city, cat, roll) {
     }
 
     // apply yield decay
-    decay = (69 - 12.75) * Math.max(0, (1 - getSaturationFactor())) + 12.75;
+    decay = (46 - 12.75) * Math.max(0, (1 - getSaturationFactor())) + 12.75;
     yield = Math.floor(Math.max(0, Math.min(yield, decay * Math.log10(yield))));
 
     // distribute yields
