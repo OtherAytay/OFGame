@@ -151,6 +151,47 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
         );
     }
 
+    var forcesElem = null;
+    if (fopSelected.length > 0) {
+        forcesElem = React.createElement(
+            'div',
+            { class: "accordion-item" },
+            React.createElement(
+                'div',
+                {
+                    class: "accordion-header",
+                    id: "fop"
+                },
+                React.createElement(
+                    "button",
+                    {
+                        type: "button",
+                        class: "accordion-button collapsed",
+                        'data-bs-toggle': "collapse",
+                        'data-bs-target': "#collapse-fop",
+                        'aria-expanded': "false",
+                        'aria-controls': "collapse-fop"
+                    },
+                    "Forces at Play"
+                )
+            ),
+            React.createElement(
+                'div',
+                {
+                    id: "collapse-fop",
+                    class: "accordion-collapse collapse",
+                    'aria-labelledby': "fop",
+                    'data-bs-parent': "#cityPanelOptions"
+                },
+                React.createElement(
+                    'div',
+                    { class: "accordion-body text-center" },
+                    activeFOPs()
+                )
+            )
+        )
+    }
+
     var eventElem = null;
     if (eventsUnlocked) {
         eventElem = [React.createElement(
@@ -487,43 +528,7 @@ function cityCard({ city, spec, market, posts, fusionAvailable, yields }) {
                 ),
                 upgradesElem,
                 itemsElem,
-                React.createElement(
-                    'div',
-                    { class: "accordion-item" },
-                    React.createElement(
-                        'div',
-                        {
-                            class: "accordion-header",
-                            id: "fop"
-                        },
-                        React.createElement(
-                            "button",
-                            {
-                                type: "button",
-                                class: "accordion-button collapsed",
-                                'data-bs-toggle': "collapse",
-                                'data-bs-target': "#collapse-fop",
-                                'aria-expanded': "false",
-                                'aria-controls': "collapse-fop"
-                            },
-                            "Forces at Play"
-                        )
-                    ),
-                    React.createElement(
-                        'div',
-                        {
-                            id: "collapse-fop",
-                            class: "accordion-collapse collapse",
-                            'aria-labelledby': "fop",
-                            'data-bs-parent': "#cityPanelOptions"
-                        },
-                        React.createElement(
-                            'div',
-                            { class: "accordion-body text-center" },
-                            activeFOPs()
-                        )
-                    )
-                )
+                forcesElem,
             ),
             travelMenu({ city })
         )

@@ -868,6 +868,9 @@ function getItemPerk(item) {
 }
 
 function getItemYieldMod(item) {
+    if (items.get(item).effect != "Yield") {
+        return 0;
+    }
     var tier = items.get(item).tier;
     var base = 0;
     switch (tier) {

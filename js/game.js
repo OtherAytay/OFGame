@@ -1050,6 +1050,8 @@ function earnMilestones() {
     
     localStorage["OFGame-earnedMS"] = JSON.stringify(earnedMS);
     localStorage["OFGame-playerStats"] = JSON.stringify(playerStats);
+    generateContractPanel();
+    generateCityPanel();
     return newlyEarnedMS
 }
 

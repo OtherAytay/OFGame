@@ -111,27 +111,27 @@ function rerollContract(cat) {
 
 function getDuration(cat, roll) {
     if (cat == "Oral") {
-        if (roll == 8) { return "20 deepthroats" }
-        if (roll == 9) { return "10 deepthroats" }
-        if (roll == 10) { return "120 seconds in throat" }
-
-        baseDuration = 5 * contractDurationMult;
+        durationMult = contractDurationMult;
         if (cities.get(currentCity).market == "Anglo") {
-            return baseDuration * 2 + " min";
+            durationMult *= 2
         }
         if (activeItems.includes("Large Plug")) {
-            baseDuration *= 0.5;
+            durationMult *= 0.5;
         }
-        return baseDuration + " min";
+
+        if (roll == 8) { return 20 * durationMult + " deepthroats" }
+        else if (roll == 9) { return 10 * durationMult + " deepthroats" }
+        else if (roll == 10) { return 120 * durationMult + " seconds in throat" }
+        else { return 5 * durationMult + " min";}
     } else if (cat == "Anal") {
-        baseDuration = 3 * contractDurationMult;
+        durationMult = contractDurationMult;
         if (cities.get(currentCity).market == "Germanic") {
-            return baseDuration * 2 + " min";
+            durationMult *= 2
         }
         if (activeItems.includes("Dildo Gag")) {
-            baseDuration *= 0.5;
+            durationMult *= 0.5;
         }
-        return baseDuration + " min";
+        return 3 * durationMult + " min";
     } else if (cat == "Sissy") {
         baseDuration = 1 * contractDurationMult;
         if (activeAug == 2) {
