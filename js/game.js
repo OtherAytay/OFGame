@@ -238,6 +238,7 @@ function newCity() {
     }
 
     localStorage["OFGame-currentRolls"] = JSON.stringify(currentRolls);
+    localStorage["OFGame-currentMoneyShots"] = JSON.stringify(currentMoneyShots);
     localStorage["OFGame-travelCosts"] = JSON.stringify(travelCosts);
     localStorage["OFGame-playerStats"] = JSON.stringify(playerStats);
 }
