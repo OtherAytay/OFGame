@@ -362,6 +362,7 @@ function travel(destCity) {
         currentCity = destCity;
         newCity();
 
+        localStorage["OFGame-money"] = money;
         localStorage["OFGame-currentCity"] = currentCity;
         localStorage["OFGame-playerStats"] = JSON.stringify(playerStats);
         generateCityPanel();
