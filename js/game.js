@@ -95,6 +95,7 @@ var playerStats = {
 
 function initializeGame() {
     loadLocal();
+    console.log("Local save loaded")
 
     // System data
     if (cities.size == 0) {

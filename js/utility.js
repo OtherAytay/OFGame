@@ -120,6 +120,7 @@ const initData = {
     "OFGame-itemsUnlocked": false,
     "OFGame-playerName": "",
     "OFGame-activeTitle": "",
+    "OFGame-earnedTitles": [],
     "OFGame-currentMoneyShots": [0, 0]
 }
 
@@ -256,7 +257,8 @@ function loadLocal() {
             activeTitle = localStorage["OFGame-activeTitle"]
             earnedTitles = JSON.parse(localStorage["OFGame-earnedTitles"])
             currentMoneyShots = JSON.parse(localStorage["OFGame-currentMoneyShots"])
-        } catch (error) { }
+
+        } catch (error) {console.log(error.message)}
     } else {
         userDataFlag = false;
     }
