@@ -264,6 +264,15 @@ function loadLocal() {
     }
 }
 
+function clearSaveConfirm(src) {
+    if (src.checked) { // first click
+        src.labels[0].innerText = "Confirm"
+    } else { // second click
+        src.labels[0].innerText = "Clear Save"
+        clearSave()
+    }
+}
+
 function clearSave() {
     for (const key of Object.keys(initData)) {
         localStorage.removeItem(key);

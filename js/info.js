@@ -167,7 +167,7 @@ function getBondageContract(roll) {
         case 7:
             return ["Complete your next post with ",
                 React.createElement('a', { href: "https://www.theduchy.com/larks-head-single-column/", target: "_blank", rel: "noopener noreferrer" }, "each hand tied"),
-                " behind back (with enough slack for you to undo the rope) to a ",
+                " behind back (or use hand cuffs) to a ",
                 React.createElement('a', { href: "https://www.theduchy.com/crotch-rope/", target: "_blank", rel: "noopener noreferrer" }, "crotch rope"),
                 " (oral) or ",
                 React.createElement('a', { href: "https://www.theduchy.com/larks-head-single-column/", target: "_blank", rel: "noopener noreferrer" }, "Tie each leg behind head"),
@@ -889,6 +889,7 @@ function generateItems() {
     createItem("Dildo Gag", ["Anal"], "Duration", 1);
     createItem("Nipple Clamps", ["Bondage"], "Yield", 1);
     createItem("Hand Cuffs", ["Bondage"], "Yield", 1);
+    createItem("Ankle Cuffs", ["Bondage"], "Yield", 1);
     createItem("Dress", ["Sissy"], "Yield", 1);
     createItem("Wig", ["Sissy"], "Yield", 1);
 
@@ -898,7 +899,6 @@ function generateItems() {
     createItem("Fantasy Dildo", ["Anal"], "Yield", 2);
     createItem("Tunnel Plug", ["Anal"], "Yield", 2);
     createItem("Nose Hook", ["Bondage"], "Yield", 2);
-    createItem("Ankle Cuffs", ["Bondage"], "Yield", 2);
     createItem("High Heels", ["Sissy"], "Yield", 2);
     createItem("Lingerie Set", ["Sissy"], "Yield", 2);
 
